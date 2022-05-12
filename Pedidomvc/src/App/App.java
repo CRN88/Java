@@ -36,11 +36,11 @@ public class App {
 		
 	
 		
-		pedidoController.inserirPedido(new Pedido(20,"1°pedido",350));
-		pedidoController.inserirPedido(new Pedido(21,"2°pedido",3));
-		pedidoController.inserirPedido(new Pedido(23,"3°pedido",200));
-		pedidoController.inserirPedido(new Pedido(24,"4°pedido",250));
-		
+//		pedidoController.inserirPedido(new Pedido(20,"1°pedido",350));
+//		pedidoController.inserirPedido(new Pedido(21,"2°pedido",3));
+//		pedidoController.inserirPedido(new Pedido(23,"3°pedido",200));
+//		pedidoController.inserirPedido(new Pedido(24,"4°pedido",250));
+//		
 //		Pedido pedidop = new Pedido();
 //		 pedidop.getNome("Ssd");
 //		 pedidop.getPreco(20);
