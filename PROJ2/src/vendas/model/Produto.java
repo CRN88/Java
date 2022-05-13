@@ -1,0 +1,69 @@
+package vendas.model;
+
+public class Produto {
+	private int id;
+
+	private String nome;
+
+	private double preco;
+
+	public Produto(int id, String nome, double preco) {
+		super();
+		this.id = id;
+		this.nome = nome;
+		this.preco = preco;
+	}
+
+	public Produto() {
+		super();
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public double getPreco() {
+		return preco;
+	}
+
+	public void setPreco(double preco) {
+		this.preco = preco;
+	}
+
+	@Override
+	public String toString() {
+		return "Produto:[Id:" + id + ", Nome:" + nome + ", Preco: " + preco + "]";
+	}
+
+//	public boolean isNew() {
+//		return false;
+//	}
+
+	public void replace(int id, Produto produto) {
+
+	}
+
+	public void put(int id, Produto produto) {
+	}
+
+	public boolean isNew() {
+		if (id == 0) {
+			return true;
+		} else {
+			return false;
+		}
+
+	}
+}
