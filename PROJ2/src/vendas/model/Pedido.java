@@ -13,6 +13,11 @@ public class Pedido {
 	private double valorTotal;
 	
 	private List<Produto> produtos;
+	
+	public Pedido() {
+		
+	}
+
 
 	public int getId() {
 		return id;
@@ -20,6 +25,12 @@ public class Pedido {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+
+	@Override
+	public String toString() {
+		return "Pedido [id=" + id + ", data=" + data + ", cliente=" + cliente + ", valorTotal=" + valorTotal
+				+ ", produtos=" + produtos + "]";
 	}
 
 	public Date getData() {
@@ -34,7 +45,7 @@ public class Pedido {
 		return cliente;
 	}
 
-	public void setCliente(Cliente cliente) {
+	public void setCliente(Pedido pedido, Cliente cliente) {
 		this.cliente = cliente;
 	}
 
@@ -52,5 +63,22 @@ public class Pedido {
 
 	public void setProdutos(List<Produto> produtos) {
 		this.produtos = produtos;
+	}
+
+	public boolean isNew() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+
+	public void put(int id2, Pedido pedido) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	public void replace(int id2, Pedido pedido) {
+		// TODO Auto-generated method stub
+		
 	}
 }

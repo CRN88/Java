@@ -2,38 +2,35 @@ package vendas.ui;
 
 import java.util.Collection;
 import java.util.Scanner;
-
 import vendas.app.VendasApp;
 import vendas.model.Produto;
 
 public class ProdutoPrinter {
 	public Produto capturarProduto(Produto produto) {
-		// armazena o estado do cliente quando entrar no metodo
+		// armazena o estado do produto quando entrar no metodo
 		boolean isNew = produto.isNew();
 
 		// faz referencia a scanner
 		Scanner sca = VendasApp.getScanner();
 
-		// se o cliente nao for novo exibe o codigo, senao exibe mensagem de novo
-		// cliente
-		if (!isNew) {
-			System.out.println("Inserindo novo produto: " + produto.getId());
-		} else {
-			System.out.println("Alterando produto código");
-		}
-
-		System.out.println();
-
+//		 se o produto nao for novo exibe o codigo, senao exibe mensagem de novo
+//		 produto
+//		if (!isNew) {
+//			System.out.println("Inserindo novo produto: " + produto.getId());
+//		} else {
+//			System.out.println("Alterando produto código");
+//			System.out.println("Inserindo novo produto: " + produto.getId());
+//		}
 		// se for um novo produto, pergunta o codigo
 		if (isNew) {
 			System.out.println("Informe o código: ");
 			produto.setId(sca.nextInt());
-			sca.nextLine();
+
 		}
 
-		// solicita o nome
 		// se o produto nao for novo, exibe o nome anterior
 		System.out.print("Informe o nome do produto");
+		produto.setNome(sca.nextLine());
 		if (!isNew) {
 			System.out.print(" [produto anterior = " + produto.getNome() + "]");
 		}
@@ -49,46 +46,26 @@ public class ProdutoPrinter {
 
 		System.out.println();
 
-		// solicita o cpf
-		// se o cliente nao for novo, exibe o cpf anterior
-		System.out.print("Informe o valor");
+		// solicita o valor do produto
+		// se o produto nao for novo, exibe o valor anterior
+		System.out.print("Informe o valor: ");
+		// produto.setPreco(sca.nextInt());
+		produto.setPreco(Integer.parseInt(sca.nextLine()));
 		if (!isNew) {
 			System.out.print(" [ anterior = " + produto.getPreco() + "]");
 		}
-		System.out.println(":");
-		produto.setPreco(sca.nextInt());
-
 		return produto;
 	}
-	// faz referencia a scanner
 
 	public void exibirLista(Collection<Produto> produtos) {
 		for (Produto produto : produtos) {
-			exibirProduto(produto);
+			System.out.println(
+					"Id: " + produto.getId() + " nome: " + produto.getNome() + " preço: " + produto.getPreco());
 		}
 	}
 
-	private void exibirProduto(Produto produto) {
+	public void exibirProduto(Produto produto) {
 		System.out.println(produto);
 
 	}
-
-//	public void exibirProduto(Collection<Cliente> collection) {
-//		System.out.println(collection);
-//	}
 }
-// roda certinho
-//	Scanner sc = VendasApp.getScanner();
-//
-//	System.out.println("Inserindo novo produto " + produto.getNome());
-//	produto.setNome(sc.nextLine());
-//	sc.nextLine();
-//	System.out.println("Informe o código: " + produto.getId());
-//	produto.setId(sc.nextInt());
-//	sc.nextLine();
-//	System.out.println("Informe o valor: " + produto.getPreco());
-//	produto.setPreco(sc.nextInt());
-//	sc.nextLine();
-//	return produto;
-//
-//}

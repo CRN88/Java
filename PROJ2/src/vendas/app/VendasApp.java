@@ -5,8 +5,10 @@ import java.util.Scanner;
 
 import Menu.MenuPrinter2;
 import vendas.controller.ClienteController;
+import vendas.controller.PedidoController;
 import vendas.controller.ProdutoController;
 import vendas.model.Cliente;
+import vendas.model.Pedido;
 import vendas.model.Produto;
 import vendas.ui.ClientePrinter;
 import vendas.ui.ProdutoPrinter;
@@ -26,8 +28,10 @@ public class VendasApp {
 	public static void main(String[] args) throws Exception {
 		// controlar os clientes
 		ClienteController clienteController = new ClienteController();
+		ProdutoController produtoController = new ProdutoController();
 		MenuPrinter2 menuP = new MenuPrinter2();
-		menuP.menuPrinter2(clienteController, null, null);
+		PedidoController pedidoController = new PedidoController();
+		menuP.menuPrinter2(clienteController,produtoController, pedidoController);
 		// instancia e grava clientes pré armazenados
 		// caso queira armanezar outros tipos, executar aqui
 
@@ -87,11 +91,8 @@ public class VendasApp {
 //			System.err.println(e.getLocalizedMessage());
 //		}
 //
-//		// listar
-//		Collection<Produto> j = produtoController.listarProduto();
-//		printerp.exibirLista(j);
-//		System.out.println("Total de " + j + " produtos.");
-//		System.out.println();
+		// listar
+
 
 //		//log
 //		System.out.println(clienteController.listarClientes());
@@ -114,11 +115,11 @@ public class VendasApp {
 //		
 //		PedidoController pedidoController = new PedidoController();
 //		
-//		//novo pedido
+		//novo pedido
 //		Pedido pedido = new Pedido();
 //		pedido.setId(1);
 //		pedido.setData(pedidoController.stringToDate("10/05/2022"));
-//		pedido.setCliente(clienteController.carregarCliente(1));
+	//	pedido.setCliente(clienteController.carregarCliente(1));
 //		
 
 	}

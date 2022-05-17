@@ -15,7 +15,7 @@ public class Produto {
 	}
 
 	public Produto() {
-		super();
+
 	}
 
 	public int getId() {
@@ -46,10 +46,6 @@ public class Produto {
 	public String toString() {
 		return "Produto:[Id:" + id + ", Nome:" + nome + ", Preco: " + preco + "]";
 	}
-
-//	public boolean isNew() {
-//		return false;
-//	}
 
 	public void replace(int id, Produto produto) {
 
