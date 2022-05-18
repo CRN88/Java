@@ -1,17 +1,15 @@
 package vendas.app;
 
-import java.util.Collection;
 import java.util.Scanner;
 
 import Menu.MenuPrinter2;
+//import br.com.fuhr.mysql.ClienteControllerDB;
 import vendas.controller.ClienteController;
+import vendas.controller.ClienteControllerDB;
 import vendas.controller.PedidoController;
 import vendas.controller.ProdutoController;
 import vendas.model.Cliente;
-import vendas.model.Pedido;
-import vendas.model.Produto;
 import vendas.ui.ClientePrinter;
-import vendas.ui.ProdutoPrinter;
 
 public class VendasApp {
 	// instancia singleton
@@ -31,7 +29,43 @@ public class VendasApp {
 		ProdutoController produtoController = new ProdutoController();
 		MenuPrinter2 menuP = new MenuPrinter2();
 		PedidoController pedidoController = new PedidoController();
+		ClienteControllerDB clieDB = new ClienteControllerDB();
+		ClientePrinter clieP = new ClientePrinter();
+		
+		//ATUALIZAR CLIENTE DO BANCO DE DADOS
+	
+		
+		//INSERIR CLIENTE NO BANCO DE DADOS
+//		Cliente cliente = new Cliente();
+//		cliente.setNome("");
+//		cliente.setCpf("147.587.584-58");
+//		clieDB.inserirCliente(cliente);
+		
+		
+		//BUSCAR CLIENTE NO BANCO DE DADOS PEWLO ID
+		//clieP.exibirCliente(clieDB.getCliente(1));
 		menuP.menuPrinter2(clienteController,produtoController, pedidoController);
+		
+		//ATUALIZAR CLIENTE DO BANCO DE DADOS
+//		try {
+//			Cliente cliente = clieDB.getCliente(7);
+//			cliente.setCpf("258.369.147-25");
+//			cliente.setNome("Carlos");
+//			clieDB.atualizarCliente(cliente);			
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+		
+		
+		
+		
+		
+//		try {
+//			Cliente cliente = controller.getCliente(100);
+//			printer.exibirCliente(cliente);
+//		}catch(Exception e) {
+//			e.printStackTrace();
+//		}
 		// instancia e grava clientes pré armazenados
 		// caso queira armanezar outros tipos, executar aqui
 
@@ -123,4 +157,6 @@ public class VendasApp {
 //		
 
 	}
+
+	
 }

@@ -6,6 +6,7 @@ import java.util.Scanner;
 
 import vendas.app.VendasApp;
 import vendas.controller.ClienteController;
+import vendas.controller.ClienteControllerDB;
 import vendas.controller.PedidoController;
 import vendas.controller.ProdutoController;
 import vendas.model.Cliente;
@@ -17,11 +18,13 @@ import vendas.ui.ProdutoPrinter;
 
 public class MenuPrinter2 {
 	public void menuPrinter2(ClienteController clieContro, ProdutoController produContro, PedidoController pediContro)
+	
 			throws Exception {
 		Scanner scan = VendasApp.getScanner();
 		ClientePrinter printer = new ClientePrinter();
 		ProdutoPrinter printerProduto = new ProdutoPrinter();
 		PedidoPrinter printerPedido = new PedidoPrinter();
+		ClienteControllerDB clisql = new ClienteControllerDB();
 		boolean respostaValida = true;
 		int resposta = 1;
 		while (resposta != 10) {
@@ -39,6 +42,7 @@ public class MenuPrinter2 {
 			System.out.println("8- Exibir pedido");
 			System.out.println("9- Excluir pedido");
 			System.out.println("10- Sair do programa");
+			System.out.println("11- Sair do programa");
 			System.out.println("=========================");
 
 			resposta = Integer.parseInt(scan.nextLine());
@@ -46,9 +50,8 @@ public class MenuPrinter2 {
 			switch (resposta) {
 			case 1:
 				// chamar metodo adicionar cliente
-				// System.out.println("1-Informe o id do cliente");
-				clieContro.inserirCliente(printer.capturarCliente(new Cliente()));
-				System.out.println("informações dos clientes cadastrados");
+				clisql.inserirCliente(printer.capturarCliente(new Cliente()));
+				System.out.println("informações dos clientes cadastrados");	
 				printer.exibirLista(clieContro.listarClientes());
 				System.out.println();
 				System.out.println("1- Voltar ao menu");
@@ -165,10 +168,10 @@ public class MenuPrinter2 {
 				pediContro.setData(PedidoController.stringToDate(d));
 				pediContro.inserirPedido(pedi);
 				printerPedido.exibirPedidos(pediContro.listarPedido());
-//				System.out.println(pedi.getData());
-//				System.out.println(pedi.getId());
-//				System.out.println(pedi.getCliente());
-//				System.out.println(pedi.getProdutos());
+				System.out.println(pedi.getData());
+				System.out.println(pedi.getId());
+				System.out.println(pedi.getCliente());
+				System.out.println(pedi.getProdutos());
 				
 				
 				//valor pedido
@@ -193,9 +196,27 @@ public class MenuPrinter2 {
 				System.out.println("Cristiano devSistemas");
 				System.out.println("======================");
 				
-			default:
+			
 
 				respostaValida = false;
+				break;
+			case 11 :
+				try {
+					System.out.println("Atualizar cliente");
+					System.out.println("Digite o id do cliente ");
+					int l = Integer.parseInt(scan.nextLine());
+					Cliente cliente = clisql.getCliente(l);
+					System.out.println("Digite o cpf");
+					String a = scan.nextLine();
+					cliente.setCpf(a);
+					System.out.println("Digite o nome");
+					String b = scan.nextLine();
+					cliente.setNome(b);
+					clisql.atualizarCliente(cliente);			
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				break;
 			}
 			if (!respostaValida) {
 				System.out.println("Opcao Invalida");
@@ -203,7 +224,7 @@ public class MenuPrinter2 {
 				System.out.println("");
 
 			}
-		}
+		}// while
 		if (resposta != 1) {
 			System.out.println("Deseja fazer mais alguma operação\n 1- sim \n 2- não");
 			resposta = scan.nextInt();
@@ -213,5 +234,5 @@ public class MenuPrinter2 {
 
 		}
 
-	} // while
+	} 
 }

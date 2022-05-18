@@ -11,7 +11,7 @@ public class Cliente {
 
 	@Override
 	public String toString() {
-		return "Cliente [id=" + id + ", nome=" + nome + ", cpf=" + cpf + "]";
+		return "Cliente [Nome=" + nome + ", cpf=" + cpf + "]";
 	}
 
 	public Cliente() {
@@ -70,4 +70,6 @@ public class Cliente {
 	public void setNome(int nome2) {
 		
 	}
+
+	
 }

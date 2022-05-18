@@ -26,9 +26,9 @@ public class ClientePrinter {
 
 		// se for um novo cliente, pergunta o codigo
 		if (isNew) {
-			System.out.println("Informe o código: ");
-			cliente.setId(sc.nextInt());
-			sc.nextLine();
+//			System.out.println("Informe o código: ");
+//			cliente.setId(sc.nextInt());
+			//sc.nextLine();
 		}
 
 		// solicita o nome
@@ -70,4 +70,5 @@ public class ClientePrinter {
 	public void exibirCliente(Cliente cliente) {
 		System.out.println(cliente);
 	}
+
 }
