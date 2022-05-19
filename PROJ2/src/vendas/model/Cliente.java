@@ -71,5 +71,9 @@ public class Cliente {
 		
 	}
 
+	public Cliente getId(Cliente cli) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 }

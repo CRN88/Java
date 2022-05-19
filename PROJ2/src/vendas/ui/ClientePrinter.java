@@ -1,10 +1,13 @@
 package vendas.ui;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.Scanner;
 
 import vendas.app.VendasApp;
+import vendas.controller.ClienteControllerDB;
 import vendas.model.Cliente;
+import vendas.model.Produto;
 
 public class ClientePrinter {
 	public Cliente capturarCliente(Cliente cliente) {
@@ -61,14 +64,32 @@ public class ClientePrinter {
 		return cliente;
 	}
 
-	public void exibirLista(Collection<Cliente> clientes) {
-		for (Cliente cliente : clientes) {
-			exibirCliente(cliente);
-		}
-	}
+//	public void exibirLista(Collection<Cliente> clientes) {
+//		for (Cliente cliente : clientes) {
+//			exibirCliente(cliente);
+//		}
+//	}
 
 	public void exibirCliente(Cliente cliente) {
 		System.out.println(cliente);
+	}
+
+	public void excluirCliente(Cliente cliente) {
+		System.out.println(cliente);
+		
+	}
+
+	public void exibirLista(List<Cliente> listCliente) {
+		System.out.println(listCliente);
+				
+	}
+	public void buscarUsuario(Cliente cliente) {
+		System.out.println(cliente);
+	}
+
+	public Produto capturarProduto(Produto produto) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

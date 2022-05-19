@@ -8,8 +8,9 @@ import vendas.controller.ClienteController;
 import vendas.controller.ClienteControllerDB;
 import vendas.controller.PedidoController;
 import vendas.controller.ProdutoController;
-import vendas.model.Cliente;
+import vendas.model.Produto;
 import vendas.ui.ClientePrinter;
+import vendasControllerDB.ProdutocontrollerDB;
 
 public class VendasApp {
 	// instancia singleton
@@ -27,24 +28,33 @@ public class VendasApp {
 		// controlar os clientes
 		ClienteController clienteController = new ClienteController();
 		ProdutoController produtoController = new ProdutoController();
+		ProdutocontrollerDB proDB = new ProdutocontrollerDB();
 		MenuPrinter2 menuP = new MenuPrinter2();
 		PedidoController pedidoController = new PedidoController();
 		ClienteControllerDB clieDB = new ClienteControllerDB();
 		ClientePrinter clieP = new ClientePrinter();
 		
-		//ATUALIZAR CLIENTE DO BANCO DE DADOS
-	
-		
+		menuP.menuPrinter2(clienteController,produtoController,clieP, pedidoController);
+
+		//ATUALIZAR CLIENTE DO BANCO DE DADOS  ok	
 		//INSERIR CLIENTE NO BANCO DE DADOS
 //		Cliente cliente = new Cliente();
 //		cliente.setNome("");
 //		cliente.setCpf("147.587.584-58");
 //		clieDB.inserirCliente(cliente);
 		
+		//ACIONAR PRODUTO OK
+//		Produto produto = new Produto();
+//		produto.setNome("Monitor");
+//		produto.setPreco(1500);	
+//		proDB.inserirProduto(produto);
+		
+	
+		
+		
 		
 		//BUSCAR CLIENTE NO BANCO DE DADOS PEWLO ID
 		//clieP.exibirCliente(clieDB.getCliente(1));
-		menuP.menuPrinter2(clienteController,produtoController, pedidoController);
 		
 		//ATUALIZAR CLIENTE DO BANCO DE DADOS
 //		try {
@@ -57,12 +67,56 @@ public class VendasApp {
 //		}
 		
 		
+		//EXCLUI O CLIENTE PELO ID 
+//		clieDB.excluirCliente(clieDB.getCliente(2));
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		
 		
 		
 //		try {
-//			Cliente cliente = controller.getCliente(100);
-//			printer.exibirCliente(cliente);
+//			Cliente clie = clieDB.getCliente(2);
+//		
+//			clieP.exibirLista(clie);
 //		}catch(Exception e) {
 //			e.printStackTrace();
 //		}
@@ -90,9 +144,9 @@ public class VendasApp {
 		// clienteController.inserirCliente(cliente);
 
 		// listar
-//		Collection<Cliente> collection = clienteController.listarClientes();
-//		printer.exibirLista(collection);
-//		System.out.println("Total de " + collection.size() + " clientes.");
+		//Collection<Cliente> collection = clienteController.listarClientes();
+		//printer.exibirLista(collection);
+		//System.out.println("Total de " + collection.size() + " clientes.");
 
 		// alterar cliente
 //		try {
@@ -155,8 +209,8 @@ public class VendasApp {
 //		pedido.setData(pedidoController.stringToDate("10/05/2022"));
 	//	pedido.setCliente(clienteController.carregarCliente(1));
 //		
-
+}
 	}
 
 	
-}
+

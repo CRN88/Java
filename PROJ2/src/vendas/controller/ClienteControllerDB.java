@@ -1,15 +1,24 @@
 package vendas.controller;
 
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 import vendas.model.Cliente;
+import vendas.model.Produto;
 
 public class ClienteControllerDB {
+	
 
-	/// PESQUISA PELO ID DO CLIENTE
+	public void menuPrinter2(ClienteController clieContro, ProdutoController produContro, PedidoController pediContro) {
+
+	}
+
+	/// PESQUISA PELO ID DO CLIENTE ok
 	private Connection getConnection() throws Exception {
 		Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/pedido", "root", "fjsistemas");
 		return con;
@@ -52,8 +61,37 @@ public class ClienteControllerDB {
 			}
 		}
 	}
+	
+	
+	//EXIBIR LISTA TODA DE CLIENTES
+	public void bucarUsuarios() throws Exception {
+		Connection con = getConnection();
+		try {
+			String sql = "SELECT id,nome,cpf FROM cliente";
+			PreparedStatement ps = con.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+			
+			while (rs.next()) {
+				int id = rs.getInt("id");
+				String nome = rs.getString("nome");
+				String cpf = rs.getString("cpf");
+				System.out.println("Id:"+id + "Nome:"+ nome + " Cpf:"+ cpf);
+			}
+			
+		rs.close();
+		ps.close();
 
-	/// ADICIONAR CLIENTE
+	} catch (Exception e) {
+		throw e;
+	} finally {
+		if (con != null) {
+			con.close();
+		}
+	}
+	}
+
+
+	/// ADICIONAR CLIENTE ok
 	public void inserirCliente(Cliente cliente) throws Exception {
 		Connection con = getConnection();
 		try {
@@ -64,6 +102,13 @@ public class ClienteControllerDB {
 			ps.setString(2, cliente.getCpf());
 
 			ps.executeUpdate();
+			int rowsAffected = ps.executeUpdate();
+
+			if (rowsAffected > 0) {
+				System.out.println("Cliente inserido com sucesso");
+			} else {
+				System.out.println("Erro ao inserir Cliente. Tente novamente");
+			}
 		} catch (Exception e) {
 			throw e;
 		} finally {
@@ -73,13 +118,21 @@ public class ClienteControllerDB {
 		}
 	}
 
+	// EXCLUIR CLIENTE PELO ID ok
 	public void excluirCliente(Cliente cliente) throws Exception {
 		Connection con = getConnection();
 		try {
-			String sql = "DELETE FROM cliente WHERE cliente_id = ?";
+			String sql = "DELETE FROM cliente WHERE id = ?";
 			PreparedStatement ps = con.prepareStatement(sql);
 			ps.setInt(1, cliente.getId());
 			ps.executeUpdate();
+			int rowsAffected = ps.executeUpdate();
+
+			if (rowsAffected > 0) {
+				System.out.println("Erro ao deletar cliente");
+			} else {
+				System.out.println("Cliente deletado com sucesso");
+			}
 		} catch (Exception e) {
 			throw e;
 		} finally {
@@ -93,11 +146,12 @@ public class ClienteControllerDB {
 	public void buscarCliente(Cliente cliente) throws Exception {
 		Connection con = getConnection();
 		try {
-			String sql = "SELECT * FROM cliente WHERE cliente_id = ?";
+			String sql = "SELECT * FROM cliente WHERE id = ?";
 			PreparedStatement ps = con.prepareStatement(sql);
 			ps.setInt(1, cliente.getId());
-			ps.executeUpdate();
+			ps.executeQuery();
 		} catch (Exception e) {
+			System.out.println("Erro aqui");
 			throw e;
 		} finally {
 			if (con != null) {
@@ -105,8 +159,9 @@ public class ClienteControllerDB {
 			}
 		}
 	}
-	public void atualizarCliente(Cliente cliente) throws Exception{
-		Connection  con = getConnection();
+
+	public void atualizarCliente(Cliente cliente) throws Exception {
+		Connection con = getConnection();
 		try {
 			String sql = "UPDATE cliente SET nome = ? ,cpf = ?  WHERE id = ?";
 			PreparedStatement ps = con.prepareStatement(sql);
@@ -115,14 +170,43 @@ public class ClienteControllerDB {
 			ps.setInt(3, cliente.getId());
 			ps.executeUpdate();
 
-		}catch (Exception e) {
+		} catch (Exception e) {
 			throw e;
-		}finally {
-			if(con !=null) {
+		} finally {
+			if (con != null) {
 				con.close();
 			}
 		}
 
 	}
-	
+
+	public void excluirCliente() {
+
+	}
+
+	public void listCliente(Object buscarCliente) {
+		// TODO Auto-generated method stub
+
+	}
+
+	public void buscarCliente(int cli) {
+		// TODO Auto-generated method stub
+
+	}
+
+	public void exibirLista(List<Cliente> listCliente) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public Object capturarProduto(Produto produto) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public void inserirProduto(Object capturarProduto) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

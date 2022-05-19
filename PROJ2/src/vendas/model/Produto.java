@@ -44,7 +44,7 @@ public class Produto {
 
 	@Override
 	public String toString() {
-		return "Produto:[Id:" + id + ", Nome:" + nome + ", Preco: " + preco + "]";
+		return "Produto:[ Nome:" + nome + ", Preco: " + preco + "]";
 	}
 
 	public void replace(int id, Produto produto) {
@@ -61,5 +61,14 @@ public class Produto {
 			return false;
 		}
 
+	}
+
+	public double getValor() {
+	
+		return 0;
+	}
+
+	public void setValor(int i) {
+		
 	}
 }

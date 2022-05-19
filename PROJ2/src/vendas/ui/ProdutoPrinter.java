@@ -21,10 +21,10 @@ public class ProdutoPrinter {
 //			System.out.println("Alterando produto código");
 //			System.out.println("Inserindo novo produto: " + produto.getId());
 //		}
-		// se for um novo produto, pergunta o codigo
+	//	 se for um novo produto, pergunta o codigo
 		if (isNew) {
-			System.out.println("Informe o código: ");
-			produto.setId(sca.nextInt());
+		//	System.out.println("Informe o código: ");
+		//	produto.setId(sca.nextInt());
 
 		}
 
@@ -60,12 +60,15 @@ public class ProdutoPrinter {
 	public void exibirLista(Collection<Produto> produtos) {
 		for (Produto produto : produtos) {
 			System.out.println(
-					"Id: " + produto.getId() + " nome: " + produto.getNome() + " preço: " + produto.getPreco());
+					"nome: " + produto.getNome() + " preço: " + produto.getPreco());
 		}
 	}
 
 	public void exibirProduto(Produto produto) {
 		System.out.println(produto);
 
+	}
+	public void inserirProduto(Produto produto) {
+		System.out.println(produto);
 	}
 }
