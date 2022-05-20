@@ -19,23 +19,25 @@ import vendasControllerDB.ProdutocontrollerDB;
 
 public class MenuPrinter2 {
 
-	public void menuPrinter2(ClienteController clieContro, ProdutoController produContro, ClientePrinter clieP, PedidoController pediContro)
-	
+	public void menuPrinter2(ClienteController clieContro, ProdutoController produContro, ClientePrinter clieP,
+			ClienteControllerDB clieDB, PedidoController pediContro)
+
 			throws Exception {
 		Scanner scan = VendasApp.getScanner();
 		ClientePrinter printer = new ClientePrinter();
 		ProdutoPrinter printerP = new ProdutoPrinter();
-		ProdutoPrinter printerProduto = new ProdutoPrinter();
 		ProdutocontrollerDB proMenu = new ProdutocontrollerDB();
 		PedidoPrinter printerPedido = new PedidoPrinter();
 		ClienteControllerDB clisql = new ClienteControllerDB();
+		
+		
 		boolean respostaValida = true;
 		int resposta = 1;
-		while (resposta != 10) {
+		while (respostaValida) {
 			System.out.println("=========================");
 			System.out.println("Cristiano devSistemas");
 			System.out.println("=========================");
-			System.out.println("Escolha a opçao desejada");
+			System.out.println("Escolha a opï¿½ao desejada");
 			System.out.println("1- Adicionar cliente");
 			System.out.println("2- Exibir clientes cadastrados");
 			System.out.println("3- Atualizar cliente");
@@ -47,7 +49,7 @@ public class MenuPrinter2 {
 			System.out.println("9- Exibir pedido");
 			System.out.println("10- Excluir pedido");
 			System.out.println("11- Sair do programa");
-		
+
 			System.out.println("=========================");
 
 			resposta = Integer.parseInt(scan.nextLine());
@@ -55,7 +57,7 @@ public class MenuPrinter2 {
 			switch (resposta) {
 			case 1:
 				// chamar metodo adicionar cliente
-				clisql.inserirCliente(printer.capturarCliente(new Cliente()));			
+				clisql.inserirCliente(printer.capturarCliente(new Cliente()));
 				System.out.println();
 				System.out.println("1- Voltar ao menu");
 				System.out.println("2- Sair do programa");
@@ -67,7 +69,7 @@ public class MenuPrinter2 {
 					break;
 				}
 			case 2:
-				System.out.println("Esses são os clientes cadastrados");		
+				System.out.println("Esses sï¿½o os clientes cadastrados");
 				clisql.bucarUsuarios();
 				System.out.println("1- Voltar ao menu");
 				System.out.println("2- Sair do programa");
@@ -90,9 +92,9 @@ public class MenuPrinter2 {
 				System.out.println("Digite o nome");
 				String b = scan.nextLine();
 				cliente.setNome(b);
-				clisql.atualizarCliente(cliente);	
+				clisql.atualizarCliente(cliente);
 				clisql.bucarUsuarios();
-				
+
 				break;
 			case 4:
 				// chamar metodo excluir cliente
@@ -110,13 +112,12 @@ public class MenuPrinter2 {
 					System.out.println("======================");
 					break;
 				}
-				
+
 				break;
 			case 5:
 				// chamar metodo Adicionar produto
-				//clisql.inserirCliente(printer.capturarCliente(new Cliente()));
+				// clisql.inserirCliente(printer.capturarCliente(new Cliente()));
 				proMenu.inserirProduto(printerP.capturarProduto(new Produto()));
-			
 				System.out.println("1- Voltar ao menu");
 				System.out.println("2- Sair do programa");
 				resposta = Integer.parseInt(scan.nextLine());
@@ -126,22 +127,27 @@ public class MenuPrinter2 {
 					System.out.println("======================");
 				}
 
-				break;
-
-			case 7:
-				// chamar metodo exibir produto
-				System.out.println("Esses sao os produtos");
-				//printerProduto.exibirLista(produContro.listarProduto());
 				break;
 
 			case 6:
+				// chamar metodo exibir produto
+				System.out.println("Esses sao os produtos");
+				proMenu.buscarProdutos();
+				// printerProduto.exibirLista(produContro.listarProduto());
+				break;
+
+			case 7:
 				// chamar metodo excluir produto
-				//printerProduto.exibirLista(produContro.listarProduto());
+				// printerProduto.exibirLista(produContro.listarProduto());
 				System.out.println("digite o Id do produto que deseja excluir");
-				int i = Integer.parseInt(scan.nextLine());
-				//produContro.excluirProduto(i);
-				//printerProduto.exibirLista(produContro.listarProduto());
-				System.out.println("Produto excluido");
+				proMenu.buscarProdutos();
+				int m = Integer.parseInt(scan.nextLine());
+				proMenu.excluirProduto(proMenu.getId(m));
+				proMenu.excluirProduto(m);
+				//proMenu.excluirProduto();
+				
+				//System.out.println("Produto excluido");
+				proMenu.buscarProdutos();
 				System.out.println("1- Voltar ao menu");
 				System.out.println("2- Sair do programa");
 				resposta = Integer.parseInt(scan.nextLine());
@@ -150,42 +156,37 @@ public class MenuPrinter2 {
 					System.out.println("Cristiano devSistemas");
 					System.out.println("======================");
 				}
-			
+
 				break;
 
 			case 8:
-				
+
 				Pedido pedi = new Pedido();
 				List<Produto> listaP = new ArrayList();
 				// chamar metodo adicionar pedido
 				System.out.println("Informe o id do pedido");
 				int j = Integer.parseInt(scan.nextLine());
 				pediContro.setId(j);
-				
-				
-				//Cliente pedido
-				
+
+				// Cliente pedido
+
 				System.out.println("Informe o id do cliente");
-				//printer.exibirLista(clieContro.listarClientes());
+				// printer.exibirLista(clieContro.listarClientes());
 				int cp = Integer.parseInt(scan.nextLine());
 				pediContro.setId(cp);
-				
-				
-				
-				
-				//produto
+
+				// produto
 				System.out.println("Informe o id do produto");
 				System.out.println("");
-				//printerProduto.exibirLista(produContro.listarProduto());
+				// printerProduto.exibirLista(produContro.listarProduto());
 				int k = Integer.parseInt(scan.nextLine());
-				//listaP.add(produContro.carregarProduto(k));
+				// listaP.add(produContro.carregarProduto(k));
 				printerPedido.exibirPedidos(pediContro.listarPedido());
-				//pediContro
-				
-				
-				//data pedido
+				// pediContro
+
+				// data pedido
 				System.out.println("Selecione a data do pedido");
-				String d = scan.nextLine();	
+				String d = scan.nextLine();
 				pediContro.setData(PedidoController.stringToDate(d));
 				pediContro.inserirPedido(pedi);
 				printerPedido.exibirPedidos(pediContro.listarPedido());
@@ -193,12 +194,9 @@ public class MenuPrinter2 {
 				System.out.println(pedi.getId());
 				System.out.println(pedi.getCliente());
 				System.out.println(pedi.getProdutos());
-				
-				
-				//valor pedido
-				
 
-				
+				// valor pedido
+
 				break;
 
 			case 9:
@@ -210,39 +208,33 @@ public class MenuPrinter2 {
 			case 10:
 				// chamar metodo excluir pedido
 
-				
-			
-
 				respostaValida = false;
 				break;
-			case 11 :
+			case 11:
 				// chamar metodo sair do programa
 				respostaValida = false;
 				System.out.println("Cristiano devSistemas");
 				System.out.println("======================");
-				try {
-						
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
 				break;
 			}
+		
 			if (!respostaValida) {
 				System.out.println("Opcao Invalida");
 			} else {
 				System.out.println("");
 
 			}
-		}// while
-		if (resposta != 1) {
-			System.out.println("Deseja fazer mais alguma operação\n 1- sim \n 2- não");
-			resposta = scan.nextInt();
+		} // while
+//		if (resposta != 1) {
+//			System.out.println("Deseja fazer mais alguma operaï¿½ï¿½o\n 1- sim \n 2- nï¿½o");
+//			resposta = scan.nextInt();
 			System.out.println("Finalizando");
 			System.out.println("Cristiano devSistemas");
 			System.out.println("======================");
 
 		}
-		
 
-	} 
+	//}
+
+	
 }

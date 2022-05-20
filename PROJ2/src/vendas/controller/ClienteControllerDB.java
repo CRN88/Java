@@ -1,6 +1,5 @@
 package vendas.controller;
 
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -12,7 +11,6 @@ import vendas.model.Cliente;
 import vendas.model.Produto;
 
 public class ClienteControllerDB {
-	
 
 	public void menuPrinter2(ClienteController clieContro, ProdutoController produContro, PedidoController pediContro) {
 
@@ -61,35 +59,33 @@ public class ClienteControllerDB {
 			}
 		}
 	}
-	
-	
-	//EXIBIR LISTA TODA DE CLIENTES
+
+	// EXIBIR LISTA TODA DE CLIENTES
 	public void bucarUsuarios() throws Exception {
 		Connection con = getConnection();
 		try {
 			String sql = "SELECT id,nome,cpf FROM cliente";
 			PreparedStatement ps = con.prepareStatement(sql);
 			ResultSet rs = ps.executeQuery();
-			
+
 			while (rs.next()) {
 				int id = rs.getInt("id");
 				String nome = rs.getString("nome");
 				String cpf = rs.getString("cpf");
-				System.out.println("Id:"+id + "Nome:"+ nome + " Cpf:"+ cpf);
+				System.out.println("Id:" + id + "Nome:" + nome + " Cpf:" + cpf);
 			}
-			
-		rs.close();
-		ps.close();
 
-	} catch (Exception e) {
-		throw e;
-	} finally {
-		if (con != null) {
-			con.close();
+			rs.close();
+			ps.close();
+
+		} catch (Exception e) {
+			throw e;
+		} finally {
+			if (con != null) {
+				con.close();
+			}
 		}
 	}
-	}
-
 
 	/// ADICIONAR CLIENTE ok
 	public void inserirCliente(Cliente cliente) throws Exception {
@@ -196,7 +192,7 @@ public class ClienteControllerDB {
 
 	public void exibirLista(List<Cliente> listCliente) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	public Object capturarProduto(Produto produto) {
@@ -206,7 +202,7 @@ public class ClienteControllerDB {
 
 	public void inserirProduto(Object capturarProduto) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }

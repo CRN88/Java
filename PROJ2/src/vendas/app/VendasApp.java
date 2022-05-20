@@ -8,13 +8,11 @@ import vendas.controller.ClienteController;
 import vendas.controller.ClienteControllerDB;
 import vendas.controller.PedidoController;
 import vendas.controller.ProdutoController;
-import vendas.model.Produto;
 import vendas.ui.ClientePrinter;
-import vendasControllerDB.ProdutocontrollerDB;
 
 public class VendasApp {
 	// instancia singleton
-	// variaveis estáticas sao variaveis instanciadas uma unica vez no sistema
+	// variaveis estï¿½ticas sao variaveis instanciadas uma unica vez no sistema
 	// inteiro por classe
 	// Sao acessiveis independente de instanciar a classe em questao
 	// * pesquisar sobre o padrao de projeto singleton e variaveis static
@@ -28,13 +26,13 @@ public class VendasApp {
 		// controlar os clientes
 		ClienteController clienteController = new ClienteController();
 		ProdutoController produtoController = new ProdutoController();
-		ProdutocontrollerDB proDB = new ProdutocontrollerDB();
+		//ProdutocontrollerDB proDB = new ProdutocontrollerDB();
 		MenuPrinter2 menuP = new MenuPrinter2();
 		PedidoController pedidoController = new PedidoController();
 		ClienteControllerDB clieDB = new ClienteControllerDB();
 		ClientePrinter clieP = new ClientePrinter();
 		
-		menuP.menuPrinter2(clienteController,produtoController,clieP, pedidoController);
+		menuP.menuPrinter2(clienteController,produtoController,clieP,clieDB, pedidoController);
 
 		//ATUALIZAR CLIENTE DO BANCO DE DADOS  ok	
 		//INSERIR CLIENTE NO BANCO DE DADOS
@@ -120,14 +118,14 @@ public class VendasApp {
 //		}catch(Exception e) {
 //			e.printStackTrace();
 //		}
-		// instancia e grava clientes pré armazenados
+		// instancia e grava clientes prï¿½ armazenados
 		// caso queira armanezar outros tipos, executar aqui
 
 		// * pesquisar sobre try catch em java
 //		try {
-//			clienteController.inserirCliente(new Cliente(1, "012.345.789-66", "João da Silva"));
+//			clienteController.inserirCliente(new Cliente(1, "012.345.789-66", "Joï¿½o da Silva"));
 //			clienteController.inserirCliente(new Cliente(2, "789.456.123-00", "Aline dos Santos"));
-//			clienteController.inserirCliente(new Cliente(3, "444.321.654.99", "José Lima"));
+//			clienteController.inserirCliente(new Cliente(3, "444.321.654.99", "Josï¿½ Lima"));
 //		} catch (Exception e) {
 //			System.err.println(e.getLocalizedMessage());
 //		}
@@ -188,7 +186,7 @@ public class VendasApp {
 //		//alterar cliente
 //		//primeiro busca o cliente
 //		Cliente cliente = clienteController.carregarCliente(2);
-//		//altera o que for necessário
+//		//altera o que for necessï¿½rio
 //		cliente.setNome("Joana dos Santos");
 //		//faz o update
 //		clienteController.atualizarCliente(cliente);

@@ -20,7 +20,7 @@ public class ClientePrinter {
 		// se o cliente nao for novo exibe o codigo, senao exibe mensagem de novo
 		// cliente
 		if (!isNew) {
-			System.out.println("Alterando cliente código: " + cliente.getId());
+			System.out.println("Alterando cliente cï¿½digo: " + cliente.getId());
 		} else {
 			System.out.println("Inserindo novo cliente");
 		}
@@ -29,7 +29,7 @@ public class ClientePrinter {
 
 		// se for um novo cliente, pergunta o codigo
 		if (isNew) {
-//			System.out.println("Informe o código: ");
+//			System.out.println("Informe o cï¿½digo: ");
 //			cliente.setId(sc.nextInt());
 			//sc.nextLine();
 		}
@@ -40,11 +40,11 @@ public class ClientePrinter {
 		if (!isNew) {
 			System.out.print(" [nome anterior = " + cliente.getNome() + "]");
 		}
-		System.out.println(":");
+		//System.out.println(":");
 		// se o cliente for novo, passa qualquer valor
 		// se o cliente nao for novo, passa o novo valor somente
 		// se o valor capturado nao for vazio ""
-		// funcao trim remove os espaços do final da string
+		// funcao trim remove os espaï¿½os do final da string
 		String nome = sc.nextLine();
 		if (isNew || (!isNew && !nome.trim().equals(""))) {
 			cliente.setNome(nome);
