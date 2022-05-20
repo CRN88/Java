@@ -61,5 +61,13 @@ public class PedidoController {
 	public Pedido carregarPedido(int id) {
 		return pedidos.get(id);
 	}
+	public char[] getId() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	public char[] getData() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }

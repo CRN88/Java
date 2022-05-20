@@ -9,6 +9,7 @@ import vendas.controller.ClienteControllerDB;
 import vendas.controller.PedidoController;
 import vendas.controller.ProdutoController;
 import vendas.ui.ClientePrinter;
+import vendasControllerDB.PedidoDB;
 import vendasControllerDB.ProdutocontrollerDB;
 
 public class VendasApp {
@@ -26,14 +27,17 @@ public class VendasApp {
 	public static void main(String[] args) throws Exception {
 		// controlar os clientes
 		ClienteController clienteController = new ClienteController();
+		ClienteControllerDB clieDB = new ClienteControllerDB();
+		ClientePrinter clieP = new ClientePrinter();
+		ProdutocontrollerDB pedidoDB = new ProdutocontrollerDB();
 		ProdutoController produtoController = new ProdutoController();
 		ProdutocontrollerDB proDB = new ProdutocontrollerDB();
 		MenuPrinter2 menuP = new MenuPrinter2();
 		PedidoController pedidoController = new PedidoController();
-		ClienteControllerDB clieDB = new ClienteControllerDB();
-		ClientePrinter clieP = new ClientePrinter();
+		PedidoDB pedi = new PedidoDB();
 		
-		menuP.menuPrinter2(clienteController,produtoController, pedidoController);
+		
+		menuP.menuPrinter2(clienteController,produtoController, pedidoController, pedidoController);
 
 		//ATUALIZAR CLIENTE DO BANCO DE DADOS  ok	
 		//INSERIR CLIENTE NO BANCO DE DADOS

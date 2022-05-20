@@ -81,4 +81,28 @@ public class Pedido {
 		// TODO Auto-generated method stub
 		
 	}
+
+
+	public void setCliente(int f) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	public void setProdutos(int k) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	public void setData(String h) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	public double getPrecoTotal() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }

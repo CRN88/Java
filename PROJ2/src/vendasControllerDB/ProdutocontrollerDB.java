@@ -21,45 +21,45 @@ public class ProdutocontrollerDB {
 		Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/pedido", "root", "fjsistemas");
 		return con;
 	}
-	
+
 	/// PESQUISA PELO ID DO PRODUTO
-			public Produto getProduto(int id) throws Exception {
-				Connection con = getConnection();
-				try {
-					Produto produto = null;
-					String sql = "SELECT id, nome, preco FROM produtos WHERE id = ?";
-					PreparedStatement ps = con.prepareStatement(sql);
-					ps.setInt(1, id);
-					ResultSet rs = ps.executeQuery();
+	public Produto getProduto(int id) throws Exception {
+		Connection con = getConnection();
+		try {
+			Produto produto = null;
+			String sql = "SELECT id, nome, preco FROM produtos WHERE id = ?";
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setInt(1, id);
+			ResultSet rs = ps.executeQuery();
 
-					while (rs.next()) {
-						id = rs.getInt("id");
-						String nome = rs.getString("nome");
-						Double preco = rs.getDouble("preco");
+			while (rs.next()) {
+				id = rs.getInt("id");
+				String nome = rs.getString("nome");
+				Double preco = rs.getDouble("preco");
 
-						produto = new Produto();
-						produto.setId(id);
-						produto.setNome(nome);
-						produto.setPreco(preco);
-					}
-					rs.close();
-					ps.close();
-
-					if (produto == null) {
-						throw new Exception("Produto not found.");
-					}
-
-					return produto;
-				} catch (Exception e) {
-					// caso encontre uma excessao, dispara ela
-					throw e;
-				} finally {
-					// caso tenha uma conexao aberta, encerra
-					if (con != null) {
-						con.close();
-					}
-				}
+				produto = new Produto();
+				produto.setId(id);
+				produto.setNome(nome);
+				produto.setPreco(preco);
 			}
+			rs.close();
+			ps.close();
+
+			if (produto == null) {
+				throw new Exception("Produto not found.");
+			}
+
+			return produto;
+		} catch (Exception e) {
+			// caso encontre uma excessao, dispara ela
+			throw e;
+		} finally {
+			// caso tenha uma conexao aberta, encerra
+			if (con != null) {
+				con.close();
+			}
+		}
+	}
 
 	// INSERIR PRODUTO OK
 	public void inserirProduto(Produto produto) throws Exception {
@@ -69,7 +69,7 @@ public class ProdutocontrollerDB {
 			PreparedStatement ps = con.prepareStatement(sql);
 			ps.setString(1, produto.getNome());
 			ps.setDouble(2, produto.getPreco());
-		//	ps.executeUpdate();
+			// ps.executeUpdate();
 			int rowsAffected = ps.executeUpdate();
 
 			if (rowsAffected > 0) {
@@ -88,7 +88,8 @@ public class ProdutocontrollerDB {
 			}
 		}
 	}
-			//BUSCAR PRODUTOS CADASTRAD0S OK
+
+	// BUSCAR PRODUTOS CADASTRAD0S OK
 	public void buscarProdutos() throws Exception {
 		Connection con = getConnection();
 		try {
@@ -114,9 +115,8 @@ public class ProdutocontrollerDB {
 			}
 		}
 	}
-	
-	
-		//BUSCAR PRODUTOS PELO ID  OK
+
+	// BUSCAR PRODUTOS PELO ID OK
 	public void buscarProduto(Produto produto) throws Exception {
 		Connection con = getConnection();
 		try {
@@ -124,7 +124,7 @@ public class ProdutocontrollerDB {
 			PreparedStatement ps = con.prepareStatement(sql);
 			ps.setInt(1, produto.getId());
 			ps.executeQuery();
-			
+
 		} catch (Exception e) {
 			System.out.println("Erro aqui");
 			throw e;
@@ -134,87 +134,73 @@ public class ProdutocontrollerDB {
 			}
 		}
 	}
-	
-	
-	
+
 	// EXCLUIR PRODUTO PELO ID OK
-		public void excluirProduto(Produto produto) throws Exception {
-			Connection con = getConnection();
-			try {
-				String sql = "DELETE FROM produtos WHERE id = ?";
-				PreparedStatement ps = con.prepareStatement(sql);
-				ps.setInt(1, produto.getId());
-				ps.executeUpdate();
-				int rowsAffected = ps.executeUpdate();
+	public void excluirProduto(Produto produto) throws Exception {
+		Connection con = getConnection();
+		try {
+			String sql = "DELETE FROM produtos WHERE id = ?";
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setInt(1, produto.getId());
+			ps.executeUpdate();
+			int rowsAffected = ps.executeUpdate();
 
-				if (rowsAffected > 0) {
-					System.out.println("Erro ao deletar produto");
-				} else {
-					System.out.println("Produto deletado com sucesso");
-				}
-			} catch (Exception e) {
-				throw e;
-			} finally {
-				if (con != null) {
-					con.close();
-				}
+			if (rowsAffected > 0) {
+				System.out.println("Erro ao deletar produto");
+			} else {
+				System.out.println("Produto deletado com sucesso");
 			}
-
-		}
-		
-				//OK
-		public void atualizarProduto(Produto produto) throws Exception {
-			Connection con = getConnection();
-			try {
-				String sql = "UPDATE produtos SET nome = ? , preco = ? WHERE id = ?";
-				PreparedStatement ps = con.prepareStatement(sql);
-				ps.setString(1, produto.getNome());
-				ps.setDouble(2, produto.getPreco());
-				ps.setInt(3, produto.getId());
-				ps.executeUpdate();
-
-			} catch (Exception e) {
-				throw e;
-			} finally {
-				if (con != null) {
-					con.close();
-				}
+		} catch (Exception e) {
+			throw e;
+		} finally {
+			if (con != null) {
+				con.close();
 			}
 		}
 
-	
-		public void excluirProduto() {
+	}
 
+	// ATUALIZAR PRODUTO
+	public void atualizarProduto(Produto produto) throws Exception {
+		Connection con = getConnection();
+		try {
+			String sql = "UPDATE produtos SET nome = ? , preco = ? WHERE id = ?";
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setString(1, produto.getNome());
+			ps.setDouble(2, produto.getPreco());
+			ps.setInt(3, produto.getId());
+			ps.executeUpdate();
+
+		} catch (Exception e) {
+			throw e;
+		} finally {
+			if (con != null) {
+				con.close();
+			}
 		}
+	}
 
-		public void listProdutos(Object buscarCliente) {		
+	public void excluirProduto() {
+	}
 
-		}
+	public void listProdutos(Object buscarCliente) {
+	}
 
-		public void buscarProduto(int pro) {
-	
+	public void buscarProduto(int pro) {
+	}
 
-		}
-		public void capturarProduto(Produto produto) {
-		
-			
-		}
+	public void capturarProduto(Produto produto) {
+	}
 
-		public void inserirProduto(Object capturarProduto) {
-			
+	public void inserirProduto(Object capturarProduto) {
+	}
 
-		}
+	public void excluirProduto(Object produto) {
 
-		public void excluirProduto(Object produto) {
-			// TODO Auto-generated method stub
-			
-		}
+	}
 
-		public Produto getProduto(Produto produto) {
-			// TODO Auto-generated method stub
-			return null;
-		}
+	public Produto getProduto(Produto produto) {
+		return null;
+	}
 
-	
-	
 }

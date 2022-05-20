@@ -15,20 +15,24 @@ import vendas.model.Produto;
 import vendas.ui.ClientePrinter;
 import vendas.ui.PedidoPrinter;
 import vendas.ui.ProdutoPrinter;
+import vendasControllerDB.PedidoDB;
 import vendasControllerDB.ProdutocontrollerDB;
 
 public class MenuPrinter2 {
 
-	public void menuPrinter2(ClienteController clieContro, ProdutoController produContro,
+	public void menuPrinter2(ClienteController clieContro, ProdutoController produContro,PedidoController pedidoController, 
 			PedidoController pediContro)
 
 			throws Exception {
 		Scanner scan = VendasApp.getScanner();
 		ClientePrinter printer = new ClientePrinter();
+		ClienteControllerDB clisql = new ClienteControllerDB();
 		ProdutoPrinter printerP = new ProdutoPrinter();
 		ProdutocontrollerDB proMenu = new ProdutocontrollerDB();
 		PedidoPrinter printerPedido = new PedidoPrinter();
-		ClienteControllerDB clisql = new ClienteControllerDB();
+		PedidoDB pediB = new PedidoDB();
+		PedidoController pedi = new PedidoController();
+		
 		
 		
 		boolean respostaValida = true;
@@ -57,7 +61,7 @@ public class MenuPrinter2 {
 
 			switch (resposta) {
 			case 1:
-				// chamar metodo adicionar cliente
+				// ADICIONAR CLIENTE
 				clisql.inserirCliente(printer.capturarCliente(new Cliente()));
 				System.out.println();
 				System.out.println("1- Voltar ao menu");
@@ -83,6 +87,7 @@ public class MenuPrinter2 {
 				break;
 
 			case 3:
+				//ATUALIZAR CLIENTE
 				System.out.println("Atualizar cliente");
 				System.out.println("Digite o id do cliente ");
 				int l = Integer.parseInt(scan.nextLine());
@@ -98,7 +103,7 @@ public class MenuPrinter2 {
 
 				break;
 			case 4:
-				// chamar metodo excluir cliente
+				// EXCLUIR CLIENTE
 				System.out.println("Informe o Id do cliente que deseja excluir");
 				int cli = Integer.parseInt(scan.nextLine());
 				clisql.buscarCliente(clisql.getCliente(cli));
@@ -116,8 +121,7 @@ public class MenuPrinter2 {
 
 				break;
 			case 5:
-				// chamar metodo Adicionar produto
-				// clisql.inserirCliente(printer.capturarCliente(new Cliente()));
+				// ADICIONAR PRODUTO
 				proMenu.inserirProduto(printerP.capturarProduto(new Produto()));
 				System.out.println("1- Voltar ao menu");
 				System.out.println("2- Sair do programa");
@@ -131,13 +135,13 @@ public class MenuPrinter2 {
 				break;
 
 			case 6:
-				// chamar metodo exibir produto
+				//LISTAR PRODUTOS
 				System.out.println("Esses sao os produtos");
 				proMenu.buscarProdutos();
-				// printerProduto.exibirLista(produContro.listarProduto());
 				break;
 
 			case 7:
+				// ATUALIZAR PRODUTO 
 				System.out.println("Atualizar produto");
 				System.out.println("Digite o id do produto ");
 				proMenu.buscarProdutos();
@@ -150,22 +154,15 @@ public class MenuPrinter2 {
 				String n = scan.nextLine();
 				produto.setNome(n);
 				proMenu.atualizarProduto(produto);
-				//proMenu.buscarProduto(produto);
-				
 
 				break;
 
 			case 8:
-						//OK
+						//EXCLUIR PRODUTO //OK
 				System.out.println("digite o Id do produto que deseja excluir");
 				proMenu.buscarProdutos();
 				int pro = Integer.parseInt(scan.nextLine());
-				//proMenu.buscarProduto((pro));
-				//proMenu.getProduto(pro);
-				//proMenu.excluirProduto(pro);
 				proMenu.excluirProduto(proMenu.getProduto(pro));
-				
-				
 				proMenu.buscarProdutos();
 				System.out.println("1- Voltar ao menu");
 				System.out.println("2- Sair do programa");
@@ -179,39 +176,69 @@ public class MenuPrinter2 {
 				break;
 
 			case 9:
-				Pedido pedi = new Pedido();
+				
+	//ADD PRODDUTO  proMenu.inserirProduto(printerP.capturarProduto(new Produto()));
+				Pedido pediLis = new Pedido();
 				List<Produto> listaP = new ArrayList();
 				// chamar metodo adicionar pedido
 				System.out.println("Informe o id do pedido");
 				int g = Integer.parseInt(scan.nextLine());
-				pediContro.setId(g);
+				pediLis.setId(g);
 
 				// Cliente pedido
-
+				
+				System.out.println("Esses sõ os clientes cadastrados");
 				System.out.println("Informe o id do cliente");
-				// printer.exibirLista(clieContro.listarClientes());
-				int cp = Integer.parseInt(scan.nextLine());
-				pediContro.setId(cp);
-
-				// produto
+				System.out.println();
+				clisql.bucarUsuarios();
+				int f = Integer.parseInt(scan.nextLine());
+				pediLis.setCliente(f);
+				
+				System.out.println("Selecione a data do pedido");
+				String h = scan.nextLine();
+				pediB.setData(PedidoController.stringToDate());
+				pediLis.setData(h);
+				
+			
+				// produto				
+				System.out.println("Esses são os produtos disponiveis");
 				System.out.println("Informe o id do produto");
-				System.out.println("");
+				System.out.println();
+				proMenu.buscarProdutos();
+				int k = scan.nextInt();
+				pediLis.setProdutos(k);
+				
+				
+//				listaP.add(g);
+//				listaP.add(f);
+//				listaP.add(h);
+//				listaP.add(k);
+				
+				
+				pediB.inserirPedido(pediLis);
+				
+				
+				
+				//proMenu.inserirProduto(printerP.capturarProduto(new Produto()));
+				
+				//pediB.inserirPedido(pediB.carregarPedido(k,d,g,f));
+//			
 				// printerProduto.exibirLista(produContro.listarProduto());
-				int k = Integer.parseInt(scan.nextLine());
+				//int k = Integer.parseInt(scan.nextLine());
 				// listaP.add(produContro.carregarProduto(k));
-				printerPedido.exibirPedidos(pediContro.listarPedido());
+				
+				//printerPedido.exibirPedidos(pediContro.listarPedido());
+				
 				// pediContro
 
 				// data pedido
-				System.out.println("Selecione a data do pedido");
-				String d = scan.nextLine();
-				pediContro.setData(PedidoController.stringToDate(d));
-				pediContro.inserirPedido(pedi);
-				printerPedido.exibirPedidos(pediContro.listarPedido());
-				System.out.println(pedi.getData());
-				System.out.println(pedi.getId());
-				System.out.println(pedi.getCliente());
-				System.out.println(pedi.getProdutos());
+				
+				//pediB.inserirPedido();
+				//printerPedido.exibirPedidos(pediContro.listarPedido());
+//				System.out.println(pedi.getData());
+//				System.out.println(pedi.getId());
+//				System.out.println(pediContro.getClass());
+//				System.out.println();
 
 				// valor pedido
 
