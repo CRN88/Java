@@ -12,10 +12,10 @@ public class ProdutoController {
 ///	public void inserProduto(Produto produto) throws Exception {
 
 //		if (produtos.containsKey(produto.getId())) {
-//			throw new Exception("Já existe um produto com esse código.");
+//			throw new Exception("Jï¿½ existe um produto com esse cï¿½digo.");
 //		}
 //		if (produto.getNome().trim().equals("")) {
-	//	throw new Exception("Não é possível inserir produto sem nome.");
+	//	throw new Exception("Nï¿½o ï¿½ possï¿½vel inserir produto sem nome.");
 	//}
 
 //	public ProdutoController() {
@@ -69,7 +69,6 @@ public class ProdutoController {
 	}
 
 	public void inserProduto(Produto produto) {
-		// TODO Auto-generated method stub
 		
 	}
 

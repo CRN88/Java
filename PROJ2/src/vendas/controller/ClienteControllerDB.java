@@ -97,7 +97,7 @@ public class ClienteControllerDB {
 			ps.setString(1, cliente.getNome());
 			ps.setString(2, cliente.getCpf());
 
-			ps.executeUpdate();
+			//ps.executeUpdate();
 			int rowsAffected = ps.executeUpdate();
 
 			if (rowsAffected > 0) {
@@ -181,27 +181,16 @@ public class ClienteControllerDB {
 	}
 
 	public void listCliente(Object buscarCliente) {
-		// TODO Auto-generated method stub
-
 	}
 
 	public void buscarCliente(int cli) {
-		// TODO Auto-generated method stub
-
 	}
 
 	public void exibirLista(List<Cliente> listCliente) {
-		// TODO Auto-generated method stub
 
-	}
-
-	public Object capturarProduto(Produto produto) {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 	public void inserirProduto(Object capturarProduto) {
-		// TODO Auto-generated method stub
 
 	}
 

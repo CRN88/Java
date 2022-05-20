@@ -4,10 +4,12 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.List;
 
 import vendas.controller.ClienteController;
 import vendas.controller.PedidoController;
 import vendas.controller.ProdutoController;
+import vendas.model.Cliente;
 import vendas.model.Produto;
 
 public class ProdutocontrollerDB {
@@ -19,6 +21,45 @@ public class ProdutocontrollerDB {
 		Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/pedido", "root", "fjsistemas");
 		return con;
 	}
+	
+	/// PESQUISA PELO ID DO PRODUTO
+			public Produto getProduto(int id) throws Exception {
+				Connection con = getConnection();
+				try {
+					Produto produto = null;
+					String sql = "SELECT id, nome, preco FROM produtos WHERE id = ?";
+					PreparedStatement ps = con.prepareStatement(sql);
+					ps.setInt(1, id);
+					ResultSet rs = ps.executeQuery();
+
+					while (rs.next()) {
+						id = rs.getInt("id");
+						String nome = rs.getString("nome");
+						Double preco = rs.getDouble("preco");
+
+						produto = new Produto();
+						produto.setId(id);
+						produto.setNome(nome);
+						produto.setPreco(preco);
+					}
+					rs.close();
+					ps.close();
+
+					if (produto == null) {
+						throw new Exception("Produto not found.");
+					}
+
+					return produto;
+				} catch (Exception e) {
+					// caso encontre uma excessao, dispara ela
+					throw e;
+				} finally {
+					// caso tenha uma conexao aberta, encerra
+					if (con != null) {
+						con.close();
+					}
+				}
+			}
 
 	// INSERIR PRODUTO OK
 	public void inserirProduto(Produto produto) throws Exception {
@@ -28,7 +69,7 @@ public class ProdutocontrollerDB {
 			PreparedStatement ps = con.prepareStatement(sql);
 			ps.setString(1, produto.getNome());
 			ps.setDouble(2, produto.getPreco());
-			ps.executeUpdate();
+		//	ps.executeUpdate();
 			int rowsAffected = ps.executeUpdate();
 
 			if (rowsAffected > 0) {
@@ -73,7 +114,30 @@ public class ProdutocontrollerDB {
 			}
 		}
 	}
-	// EXCLUIR PRODUTO PELO ID
+	
+	
+		//BUSCAR PRODUTOS PELO ID  OK
+	public void buscarProduto(Produto produto) throws Exception {
+		Connection con = getConnection();
+		try {
+			String sql = "SELECT * FROM produtod WHERE id = ?";
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setInt(1, produto.getId());
+			ps.executeQuery();
+			
+		} catch (Exception e) {
+			System.out.println("Erro aqui");
+			throw e;
+		} finally {
+			if (con != null) {
+				con.close();
+			}
+		}
+	}
+	
+	
+	
+	// EXCLUIR PRODUTO PELO ID OK
 		public void excluirProduto(Produto produto) throws Exception {
 			Connection con = getConnection();
 			try {
@@ -97,22 +161,60 @@ public class ProdutocontrollerDB {
 			}
 
 		}
-	public Produto capturarProduto(Produto produto) {
 		
-		return produto;
-	}
+				//OK
+		public void atualizarProduto(Produto produto) throws Exception {
+			Connection con = getConnection();
+			try {
+				String sql = "UPDATE produtos SET nome = ? , preco = ? WHERE id = ?";
+				PreparedStatement ps = con.prepareStatement(sql);
+				ps.setString(1, produto.getNome());
+				ps.setDouble(2, produto.getPreco());
+				ps.setInt(3, produto.getId());
+				ps.executeUpdate();
 
-	public void excluirProduto(int i) {	
-	}
+			} catch (Exception e) {
+				throw e;
+			} finally {
+				if (con != null) {
+					con.close();
+				}
+			}
+		}
 
-	public Produto getId(int i) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
+		public void excluirProduto() {
 
-	public void excluirProduto() {
-		// TODO Auto-generated method stub
+		}
+
+		public void listProdutos(Object buscarCliente) {		
+
+		}
+
+		public void buscarProduto(int pro) {
+	
+
+		}
+		public void capturarProduto(Produto produto) {
 		
-	}
+			
+		}
+
+		public void inserirProduto(Object capturarProduto) {
+			
+
+		}
+
+		public void excluirProduto(Object produto) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		public Produto getProduto(Produto produto) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+	
 	
 }
