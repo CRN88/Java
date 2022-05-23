@@ -19,7 +19,7 @@ import vendasControllerDB.PedidoDB;
 import vendasControllerDB.ProdutocontrollerDB;
 
 public class MenuPrinter2 {
-
+	//teste
 	public void menuPrinter2(ClienteController clieContro, ProdutoController produContro,PedidoController pedidoController, 
 			PedidoController pediContro)
 
@@ -187,7 +187,7 @@ public class MenuPrinter2 {
 
 				// Cliente pedido
 				
-				System.out.println("Esses sõ os clientes cadastrados");
+				System.out.println("Esses sï¿½ os clientes cadastrados");
 				System.out.println("Informe o id do cliente");
 				System.out.println();
 				clisql.bucarUsuarios();
@@ -201,7 +201,7 @@ public class MenuPrinter2 {
 				
 			
 				// produto				
-				System.out.println("Esses são os produtos disponiveis");
+				System.out.println("Esses sï¿½o os produtos disponiveis");
 				System.out.println("Informe o id do produto");
 				System.out.println();
 				proMenu.buscarProdutos();
