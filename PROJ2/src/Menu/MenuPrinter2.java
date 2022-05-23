@@ -1,6 +1,7 @@
 package Menu;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 
@@ -19,9 +20,9 @@ import vendasControllerDB.PedidoDB;
 import vendasControllerDB.ProdutocontrollerDB;
 
 public class MenuPrinter2 {
-	//teste
-	public void menuPrinter2(ClienteController clieContro, ProdutoController produContro,PedidoController pedidoController, 
-			PedidoController pediContro)
+	// teste
+	public void menuPrinter2(ClienteController clieContro, ProdutoController produContro,
+			PedidoController pedidoController, PedidoController pediContro)
 
 			throws Exception {
 		Scanner scan = VendasApp.getScanner();
@@ -32,9 +33,7 @@ public class MenuPrinter2 {
 		PedidoPrinter printerPedido = new PedidoPrinter();
 		PedidoDB pediB = new PedidoDB();
 		PedidoController pedi = new PedidoController();
-		
-		
-		
+
 		boolean respostaValida = true;
 		int resposta = 1;
 		while (respostaValida) {
@@ -87,7 +86,7 @@ public class MenuPrinter2 {
 				break;
 
 			case 3:
-				//ATUALIZAR CLIENTE
+				// ATUALIZAR CLIENTE
 				System.out.println("Atualizar cliente");
 				System.out.println("Digite o id do cliente ");
 				int l = Integer.parseInt(scan.nextLine());
@@ -135,13 +134,13 @@ public class MenuPrinter2 {
 				break;
 
 			case 6:
-				//LISTAR PRODUTOS
+				// LISTAR PRODUTOS
 				System.out.println("Esses sao os produtos");
 				proMenu.buscarProdutos();
 				break;
 
 			case 7:
-				// ATUALIZAR PRODUTO 
+				// ATUALIZAR PRODUTO
 				System.out.println("Atualizar produto");
 				System.out.println("Digite o id do produto ");
 				proMenu.buscarProdutos();
@@ -158,7 +157,7 @@ public class MenuPrinter2 {
 				break;
 
 			case 8:
-						//EXCLUIR PRODUTO //OK
+				// EXCLUIR PRODUTO //OK
 				System.out.println("digite o Id do produto que deseja excluir");
 				proMenu.buscarProdutos();
 				int pro = Integer.parseInt(scan.nextLine());
@@ -172,86 +171,79 @@ public class MenuPrinter2 {
 					System.out.println("Cristiano devSistemas");
 					System.out.println("======================");
 				}
-				
+
 				break;
 
 			case 9:
 				
-	//ADD PRODDUTO  proMenu.inserirProduto(printerP.capturarProduto(new Produto()));
-				Pedido pediLis = new Pedido();
-				List<Produto> listaP = new ArrayList();
-				// chamar metodo adicionar pedido
-				System.out.println("Informe o id do pedido");
-				int g = Integer.parseInt(scan.nextLine());
-				pediLis.setId(g);
-
-				// Cliente pedido
-				
-				System.out.println("Esses sï¿½ os clientes cadastrados");
+				// ADD PRODDUTO
+				// proMenu.inserirProduto(printerP.capturarProduto(new Produto()));
+				Pedido pedido = new Pedido();
+				List<Produto> listaProPedidos = new ArrayList<>();
+				System.out.println("");
+				System.out.println("Esses são os clientes cadastrados");
 				System.out.println("Informe o id do cliente");
 				System.out.println();
 				clisql.bucarUsuarios();
-				int f = Integer.parseInt(scan.nextLine());
-				pediLis.setCliente(f);
-				
+				int idCliente = Integer.parseInt(scan.nextLine());
+				Cliente objCliente = clisql.getCliente(idCliente);
+				pedido.setCliente(objCliente);
+
+				// Data pedido
 				System.out.println("Selecione a data do pedido");
-				String h = scan.nextLine();
-				pediB.setData(PedidoController.stringToDate());
-				pediLis.setData(h);
-				
-			
-				// produto				
-				System.out.println("Esses sï¿½o os produtos disponiveis");
-				System.out.println("Informe o id do produto");
+				String dataPedido = scan.nextLine();
+				pedido.setDate(PedidoController.stringToDate(dataPedido));
+
+				// produto
+
 				System.out.println();
+				System.out.println("Quantos produtos deseja");
+				int p = Integer.parseInt(scan.nextLine());
 				proMenu.buscarProdutos();
-				int k = scan.nextInt();
-				pediLis.setProdutos(k);
+				System.out.println("Esses são os produtos disponiveis");
+				for (int i = 0; i < p; i++) {
+					System.out.println("Informe o id do produto");
+					int idProduto = Integer.parseInt(scan.nextLine());
+					Produto produto1 = proMenu.getProduto(idProduto);
+					produto1.getId(idProduto);
+					listaProPedidos.add(produto1);
+				}
 				
+				// EXIBIR PEDIDO
+				pedido.setProdutos(listaProPedidos);
+				pedido.somar();
+				//pediB.inserirPedido(pedido);
 				
-//				listaP.add(g);
-//				listaP.add(f);
-//				listaP.add(h);
-//				listaP.add(k);
+//				pedido.somar();
+//				pediB.inserirPedido(pedido);
+				// EXIBIR PEDIDO
+				for(int i=1; i <listaProPedidos.size(); i++) {			
+					System.out.println(pedido.getProdutos());
+				}
+				System.out.println(pedido.getValorTotal());
+				System.out.println(pedido.getDate());
+				System.out.println(pedido.getCliente());
 				
-				
-				pediB.inserirPedido(pediLis);
-				
-				
-				
-				//proMenu.inserirProduto(printerP.capturarProduto(new Produto()));
-				
-				//pediB.inserirPedido(pediB.carregarPedido(k,d,g,f));
-//			
-				// printerProduto.exibirLista(produContro.listarProduto());
-				//int k = Integer.parseInt(scan.nextLine());
-				// listaP.add(produContro.carregarProduto(k));
-				
-				//printerPedido.exibirPedidos(pediContro.listarPedido());
-				
-				// pediContro
+//				printerPedido.setDate(PedidoController.stringToDate(dataPedido));
+//				System.out.print(pedido.setCliente(objCliente));
+//				System.out.println(listaProPedidos);
+				//}
 
-				// data pedido
-				
-				//pediB.inserirPedido();
-				//printerPedido.exibirPedidos(pediContro.listarPedido());
-//				System.out.println(pedi.getData());
-//				System.out.println(pedi.getId());
-//				System.out.println(pediContro.getClass());
-//				System.out.println();
-
-				// valor pedido
-
-
+				// CALCULAR VALOR
 				break;
 
 			case 10:
-				
+				// EXIBIR PEDIDO
 
-				
+				//pedido.setId(pedi.listarPedido());
+//				pedido.setProdutos(listaProPedidos);
+//				pedido.somar();
+//				pedido.setDate(new Date(System.currentTimeMillis()));
+//			
 				break;
 			case 11:
-			
+				// DELETAR PEDIDO
+
 				break;
 			case 12:
 				// chamar metodo sair do programa
@@ -260,24 +252,23 @@ public class MenuPrinter2 {
 				System.out.println("======================");
 				break;
 			}
-		
+		}
+
 //			if (!respostaValida) {
 //				System.out.println("Opcao Invalida");
 //			} else {
 //				System.out.println("");
 //
 //			}
-		} // while
+		// while
 //		if (resposta != 1) {
 //			System.out.println("Deseja fazer mais alguma operaï¿½ï¿½o\n 1- sim \n 2- nï¿½o");
 //			resposta = scan.nextInt();
-			System.out.println("Finalizando");
-			System.out.println("Cristiano devSistemas");
-			System.out.println("======================");
+		System.out.println("Finalizando");
+		System.out.println("Cristiano devSistemas");
+		System.out.println("======================");
 
-		}
+		// }
 
-	//}
-
-	
+	}
 }

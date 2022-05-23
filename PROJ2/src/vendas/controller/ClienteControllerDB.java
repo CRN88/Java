@@ -88,7 +88,7 @@ public class ClienteControllerDB {
 	}
 
 	/// ADICIONAR CLIENTE ok
-	public void inserirCliente(Cliente cliente) throws Exception {
+	public Cliente inserirCliente(Cliente cliente) throws Exception {
 		Connection con = getConnection();
 		try {
 
@@ -105,6 +105,15 @@ public class ClienteControllerDB {
 			} else {
 				System.out.println("Erro ao inserir Cliente. Tente novamente");
 			}
+			
+			sql = "SELECT LAST_INSERT_ID() as id";
+			PreparedStatement ps2 = con.prepareStatement(sql);
+			ResultSet rs = ps2.executeQuery();
+			while (rs.next()) {
+				cliente.setId(rs.getInt("id"));
+			}
+			
+			return cliente;
 		} catch (Exception e) {
 			throw e;
 		} finally {
@@ -139,7 +148,7 @@ public class ClienteControllerDB {
 
 	}
 
-	public void buscarCliente(Cliente cliente) throws Exception {
+	public Cliente buscarCliente(Cliente cliente) throws Exception {
 		Connection con = getConnection();
 		try {
 			String sql = "SELECT * FROM cliente WHERE id = ?";
@@ -154,9 +163,10 @@ public class ClienteControllerDB {
 				con.close();
 			}
 		}
+		return cliente;
 	}
 
-	public void atualizarCliente(Cliente cliente) throws Exception {
+	public Cliente atualizarCliente(Cliente cliente) throws Exception {
 		Connection con = getConnection();
 		try {
 			String sql = "UPDATE cliente SET nome = ? ,cpf = ?  WHERE id = ?";
@@ -173,6 +183,7 @@ public class ClienteControllerDB {
 				con.close();
 			}
 		}
+		return cliente;
 
 	}
 

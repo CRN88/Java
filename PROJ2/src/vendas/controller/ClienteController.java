@@ -2,6 +2,7 @@ package vendas.controller;
 
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 
 import vendas.model.Cliente;
 
@@ -47,5 +48,10 @@ public class ClienteController {
 
 	public void getNome(String nextLine) {	
 		
+	}
+
+	public List<Cliente> listCliente(String nome) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

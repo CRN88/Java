@@ -3,7 +3,7 @@ package vendas.controller;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Collection;
-import java.util.Date;
+import java.sql.Date;
 import java.util.HashMap;
 
 import vendas.model.Cliente;
@@ -21,30 +21,20 @@ public class PedidoController {
 	private Collection<Pedido> pedido;
 	public static Date stringToDate(String data) {
 		try {
-			return new SimpleDateFormat("dd/MM/yyyy").parse(data);
+			return new Date( new SimpleDateFormat("dd/MM/yyyy").parse(data).getTime());
 		} catch (ParseException e) {
 			e.printStackTrace();
 			return null;
 		}
 	}
-	public void setData(Date stringToDate) {		
-	}
-	public void setId(int j) {		
-	}
-	public void setCliente(Cliente carregarCliente) {		
-	}
 
-	public static Date stringToDate() {	
-		return null;
-	}
-
-	public void inserirPedido(Pedido pedido) {
-		pedido.put(pedido.getId(), pedido);
-	}
-
-	public void atualizarProduto(Pedido pedido) {
-		pedido.replace(pedido.getId(), pedido);
-	}
+//	public void inserirPedido(Pedido pedido) {
+//		pedido.put(pedido.getId(), pedido);
+//	}
+//
+//	public void atualizarProduto(Pedido pedido) {
+//		pedido.replace(pedido.getId(), pedido);
+//	}
 
 	public void exibirProduto(Produto produto) {
 		System.out.println(produto);
@@ -61,13 +51,7 @@ public class PedidoController {
 	public Pedido carregarPedido(int id) {
 		return pedidos.get(id);
 	}
-	public char[] getId() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	public char[] getData() {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
-}
+
+

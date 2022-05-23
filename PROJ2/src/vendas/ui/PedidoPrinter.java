@@ -40,8 +40,6 @@ public class PedidoPrinter {
 				System.out.println(p.getProdutos());
 			}
 		}
-		
-		
 	}
 	public void exibirPedido(Collection<Pedido> pedidos) {
 		System.out.println(pedidos);
