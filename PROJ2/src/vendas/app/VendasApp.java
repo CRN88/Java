@@ -33,12 +33,13 @@ public class VendasApp {
 		ProdutoController produtoController = new ProdutoController();
 		ProdutocontrollerDB proDB = new ProdutocontrollerDB();
 		MenuPrinter2 menuP = new MenuPrinter2();
+		
 		PedidoController pedidoController = new PedidoController();
 		PedidoDB pedi = new PedidoDB();
 		
 		
 		menuP.menuPrinter2(clienteController,produtoController, pedidoController, pedidoController);
-
+		
 		//ATUALIZAR CLIENTE DO BANCO DE DADOS  ok	
 		//INSERIR CLIENTE NO BANCO DE DADOS
 //		Cliente cliente = new Cliente();
@@ -215,5 +216,5 @@ public class VendasApp {
 }
 	}
 
-	
+
 
