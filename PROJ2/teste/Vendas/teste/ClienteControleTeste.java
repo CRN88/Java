@@ -44,9 +44,11 @@ public class ClienteControleTeste {
 		assertEquals(1, retorno.size());
 	}
 
-	// ESSE TESTE ESTÁ INSERINDO O CLIENTE E EXCLUINDO PELO ID QUE
+	// ESSE TESTE ESTÁ INSERINDO O CLIENTE E EXCLUINDO PELO NOME E CPF
+	//QUE FOI INSERIDO
+	
 	@Test
-	@DisplayName("excluir cliente")
+	@DisplayName("Inserir e excluir cliente")
 	void testClienteExcluir() throws Exception {
 		ClienteControllerDB clisql = new ClienteControllerDB();
 		Cliente c = new Cliente();

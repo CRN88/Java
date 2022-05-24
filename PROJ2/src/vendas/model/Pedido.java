@@ -1,6 +1,7 @@
 package vendas.model;
 
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Pedido {
@@ -15,6 +16,7 @@ public class Pedido {
 	private List<Produto> produtos;
 
 	public Pedido() {
+		produtos = new ArrayList<>();
 	}
 
 	public int getId() {

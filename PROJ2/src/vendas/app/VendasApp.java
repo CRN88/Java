@@ -13,6 +13,7 @@ import vendasControllerDB.PedidoDB;
 import vendasControllerDB.ProdutocontrollerDB;
 
 public class VendasApp {
+	private static final ClienteController MenuLogin = null;
 	// instancia singleton
 	// variaveis est�ticas sao variaveis instanciadas uma unica vez no sistema
 	// inteiro por classe
@@ -33,15 +34,17 @@ public class VendasApp {
 		ProdutoController produtoController = new ProdutoController();
 		ProdutocontrollerDB proDB = new ProdutocontrollerDB();
 		MenuPrinter2 menuP = new MenuPrinter2();
-		
+		//MenuHomePage menuP = new MenuHomePage();
+		//MenuPrinter2 login = new MenuPrinter2();
+		//login.login();
 		PedidoController pedidoController = new PedidoController();
 		PedidoDB pedi = new PedidoDB();
+		menuP.menuPrinter2(clienteController, produtoController, pedidoController, pedidoController);
 		
-		
-		menuP.menuPrinter2(clienteController,produtoController, pedidoController, pedidoController);
+		//menuP(produtoController, pedidoController, pedidoController);
 		
 		//ATUALIZAR CLIENTE DO BANCO DE DADOS  ok	
-		//INSERIR CLIENTE NO BANCO DE DADOS
+		// INSERIR CLIENTE NO BANCO DE DADOS
 //		Cliente cliente = new Cliente();
 //		cliente.setNome("");
 //		cliente.setCpf("147.587.584-58");

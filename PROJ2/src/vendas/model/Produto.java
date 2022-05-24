@@ -44,7 +44,7 @@ public class Produto {
 
 	@Override
 	public String toString() {
-		return "Produto:" + nome + " Preco:" + preco+"\n" ;
+		return "[Produto:" + nome + " Preco:" + preco+"]"+"\n" ;
 	}
 
 	public void replace(int id, Produto produto) {
@@ -72,9 +72,8 @@ public class Produto {
 		
 	}
 
-	public void getId(int pp) {
+	public void getId(int idProduto) {
 		// TODO Auto-generated method stub
 		
 	}
-	
 }

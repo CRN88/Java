@@ -1,12 +1,11 @@
 package vendas.controller;
 
-import java.sql.Connection;
+import java.sql.Connection; 
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
-
 import vendas.model.Cliente;
 import vendas.model.Produto;
 
@@ -21,7 +20,7 @@ public class ClienteControllerDB {
 		Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/pedido", "root", "fjsistemas");
 		return con;
 	}
-
+	
 	public Cliente getCliente(int id) throws Exception {
 		Connection con = getConnection();
 		try {
@@ -187,22 +186,22 @@ public class ClienteControllerDB {
 
 	}
 
-	public void excluirCliente() {
-
-	}
-
-	public void listCliente(Object buscarCliente) {
-	}
-
-	public void buscarCliente(int cli) {
-	}
-
-	public void exibirLista(List<Cliente> listCliente) {
-
-	}
-
-	public void inserirProduto(Object capturarProduto) {
-
-	}
+//	public void excluirCliente() {
+//
+//	}
+//
+//	public void listCliente(Object buscarCliente) {
+//	}
+//
+//	public void buscarCliente(int cli) {
+//	}
+//
+//	public void exibirLista(List<Cliente> listCliente) {
+//
+//	}
+//
+//	public void inserirProduto(Object capturarProduto) {
+//
+//	}
 
 }

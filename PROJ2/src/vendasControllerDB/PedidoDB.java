@@ -37,11 +37,15 @@ public class PedidoDB {
 			while (rs.next()) {
 				pedido.setId(rs.getInt("id"));
 			}
-			sql = "INSERT INTO pedido_produto (idpedido,idproduto) VALUES (?,?)";
+			rs.close();
+			ps2.close();
+			String sqlb = "INSERT INTO pedido_produto (idpedido, idproduto) values (?,?)";
+			
 			for (Produto produto : pedido.getProdutos()) {
-				PreparedStatement ps3 = con.prepareStatement(sql);
+				PreparedStatement ps3 = con.prepareStatement(sqlb);
 				ps3.setInt(1, pedido.getId());
 				ps3.setInt(2, produto.getId());
+				ps3.executeUpdate();
 				ps3.close();
 			}
 		} catch (Exception e) {
@@ -58,7 +62,7 @@ public class PedidoDB {
 		Connection con = getConnection();
 		try {
 			Pedido pedido = null;
-			String sql = "SELECT id, data, valortotal FROM produtos WHERE id = ?";
+			String sql = "SELECT id, data, valortotal FROM pedido WHERE id = ?";
 			PreparedStatement ps = con.prepareStatement(sql);
 			ps.setInt(1, id);
 			ResultSet rs = ps.executeQuery();
@@ -72,6 +76,7 @@ public class PedidoDB {
 				pedido.setId(id);
 			//	pedido.setData(data);
 				pedido.setValorTotal(valorTotal);
+				System.out.println("id pedido: "+id + ", valor total: "+valorTotal);
 			}
 			rs.close();
 			ps.close();
@@ -90,6 +95,36 @@ public class PedidoDB {
 				con.close();
 			}
 		}
+	}
+	
+	//LISTA DE PEDIDOS	
+	public void listarPedidos() throws Exception {
+		Connection con = getConnection();
+		try {
+			String sql = "SELECT id,data,idcliente,valortotal FROM pedido";
+			PreparedStatement ps = con.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+
+			while (rs.next()) {
+				int id = rs.getInt("id");
+				String nome = rs.getString("nome");
+				String idCliente = rs.getString("idCliente");
+				Date data = rs.getDate("data");
+				Double valorTotal = rs.getDouble("valorTotal");
+				System.out.println("Id:" + id + "Nome:" + nome + " IdCliente:" + idCliente+" data:"+ data+ "ValorTotal"+ valorTotal);
+			}
+
+			rs.close();
+			ps.close();
+
+		} catch (Exception e) {
+			throw e;
+		} finally {
+			if (con != null) {
+				con.close();
+			}
+		}
+
 	}
 
 	// EXCLUIR PEDIDO PELO ID TESTE
@@ -117,18 +152,4 @@ public class PedidoDB {
 
 	}
 
-	public void excluirPedido() {
-	}
-
-	public void buscarPedido(int pro) {
-	}
-
-	public void excluirPedido(Object produto) {
-	}
-
-	public void setProduPedi(Pedido produto) {
-	}
-
-	public void setData(Date stringToDate) {
-	}
 }

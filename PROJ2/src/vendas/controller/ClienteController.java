@@ -51,7 +51,6 @@ public class ClienteController {
 	}
 
 	public List<Cliente> listCliente(String nome) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 }

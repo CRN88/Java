@@ -13,7 +13,7 @@ import vendas.model.Cliente;
 import vendas.model.Produto;
 
 public class ProdutocontrollerDB {
-	public void menuPrinter2(ClienteController clieContro, ProdutoController produContro, PedidoController pediContro) {
+	public void menuPrinter2(ProdutoController produtoController, PedidoController pedidoController, PedidoController pediContro) {
 
 	}
 
@@ -62,7 +62,7 @@ public class ProdutocontrollerDB {
 	}
 
 	// INSERIR PRODUTO OK
-	public void inserirProduto(Produto produto) throws Exception {
+	public Produto inserirProduto(Produto produto) throws Exception {
 		Connection con = getConnection();
 		try {
 			String sql = "INSERT INTO produtos (nome,preco) VALUES (?,?)";
@@ -77,6 +77,13 @@ public class ProdutocontrollerDB {
 			} else {
 				System.out.println("Erro ao inserir Produto. Tente novamente");
 			}
+			
+			sql = "SELECT LAST_INSERT_ID() as id";
+			PreparedStatement ps2 = con.prepareStatement(sql);
+			ResultSet rs = ps2.executeQuery();
+			while (rs.next()) {
+				produto.setId(rs.getInt("id"));
+			}
 
 		} catch (Exception e) {
 			// caso encontre uma excessao, dispara ela
@@ -87,6 +94,7 @@ public class ProdutocontrollerDB {
 				con.close();
 			}
 		}
+		return produto;
 	}
 
 	// BUSCAR PRODUTOS CADASTRAD0S OK
@@ -114,10 +122,11 @@ public class ProdutocontrollerDB {
 				con.close();
 			}
 		}
+		
 	}
 
 	// BUSCAR PRODUTOS PELO ID OK
-	public void buscarProduto(Produto produto) throws Exception {
+	public Produto buscarProduto(Produto produto) throws Exception {
 		Connection con = getConnection();
 		try {
 			String sql = "SELECT * FROM produtod WHERE id = ?";
@@ -133,10 +142,11 @@ public class ProdutocontrollerDB {
 				con.close();
 			}
 		}
+		return produto;
 	}
 
 	// EXCLUIR PRODUTO PELO ID OK
-	public void excluirProduto(Produto produto) throws Exception {
+	public Produto excluirProduto(Produto produto) throws Exception {
 		Connection con = getConnection();
 		try {
 			String sql = "DELETE FROM produtos WHERE id = ?";
@@ -157,11 +167,11 @@ public class ProdutocontrollerDB {
 				con.close();
 			}
 		}
-
+		return produto;
 	}
 
 	// ATUALIZAR PRODUTO
-	public void atualizarProduto(Produto produto) throws Exception {
+	public Produto atualizarProduto(Produto produto) throws Exception {
 		Connection con = getConnection();
 		try {
 			String sql = "UPDATE produtos SET nome = ? , preco = ? WHERE id = ?";
@@ -178,29 +188,33 @@ public class ProdutocontrollerDB {
 				con.close();
 			}
 		}
+		return produto;
 	}
 
-	public void excluirProduto() {
-	}
-
-	public void listProdutos(Object buscarCliente) {
-	}
-
-	public void buscarProduto(int pro) {
-	}
-
-	public void capturarProduto(Produto produto) {
-	}
-
-	public void inserirProduto(Object capturarProduto) {
-	}
-
-	public void excluirProduto(Object produto) {
-
-	}
-
-	public Produto getProduto(Produto produto) {
-		return null;
-	}
-
+//	public void excluirProduto() {
+//	}
+//
+//	public void listProdutos(Object buscarCliente) {
+//	}
+//
+//	public void buscarProduto(int pro) {
+//	}
+//
+//	public void capturarProduto(Produto produto) {
+//	}
+//
+//	public void inserirProduto(Object capturarProduto) {
+//	}
+//
+//	public void excluirProduto(Object produto) {
+//
+//	}
+//
+//	public Produto getProduto(Produto produto) {
+//		return null;
+//	}
+	public List<Produto> listProduto(String nome) {
+		
+			return null;
+}
 }

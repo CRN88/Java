@@ -2,11 +2,13 @@ package vendas.controller;
 
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 
 import vendas.model.Cliente;
 import vendas.model.Produto;
 
 public class ProdutoController {
+	
 	//private HashMap<Integer, Produto> produtos = new HashMap<>();
 
 ///	public void inserProduto(Produto produto) throws Exception {
@@ -61,15 +63,6 @@ public class ProdutoController {
 //		return produtos.get(id);
 //	}
 
-	public void replace(int id, Produto produto) {
-
+	
 	}
-
-	public void put(int id, Produto produto) {
-	}
-
-	public void inserProduto(Produto produto) {
-		
-	}
-
-}
+//}

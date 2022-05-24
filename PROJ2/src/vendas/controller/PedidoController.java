@@ -51,6 +51,13 @@ public class PedidoController {
 	public Pedido carregarPedido(int id) {
 		return pedidos.get(id);
 	}
+
+	public Object getPedido(int idPedidoexcluir) {
+		// TODO Auto-generated method stub
+		return pedido;
+	}
+
+
 	}
 
 
