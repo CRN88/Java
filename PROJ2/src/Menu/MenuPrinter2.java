@@ -35,7 +35,7 @@ Scanner scan = VendasApp.getScanner();
 		PedidoController pediC = new PedidoController();
 		PedidoDB pedi = new PedidoDB();
 		
-
+		int opcao= 12;
 		boolean respostaValida = true;
 		int resposta = 1;
 		while (respostaValida) {
@@ -218,16 +218,18 @@ Scanner scan = VendasApp.getScanner();
 			}
 		}
 
-//			if (!respostaValida) {
-//				System.out.println("Opcao Invalida");
-//			} else {
-//				System.out.println("");
-//
-//			}
-		// while
-//		if (resposta != 1) {
-//			System.out.println("Deseja fazer mais alguma opera��o\n 1- sim \n 2- n�o");
-//			resposta = scan.nextInt();
+			if (opcao >= 12) {
+				System.out.println("Opcao Invalida");
+			} else {
+				System.out.println("");
+
+			}
+		
+		if (resposta != 1) {
+			System.out.println("Deseja fazer mais alguma opera��o\n 1- sim \n 2- n�o");
+			resposta = scan.nextInt();
+			
+			
 		System.out.println("Finalizando");
 		System.out.println("Cristiano devSistemas");
 		System.out.println("======================");
@@ -235,4 +237,5 @@ Scanner scan = VendasApp.getScanner();
 		// }
 
 	}
+}
 }
