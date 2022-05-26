@@ -11,7 +11,7 @@ public class Cliente {
 
 	@Override
 	public String toString() {
-		return "Cliente [Nome=" + nome + ", cpf=" + cpf + "]";
+		return " [ID= "+ id  +"Nome=" + nome + ", cpf=" + cpf + "]";
 	}
 
 	public Cliente() {
@@ -71,9 +71,7 @@ public class Cliente {
 		
 	}
 
-	public Cliente getId(Cliente cli) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+
+	
 	
 }

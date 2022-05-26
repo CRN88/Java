@@ -70,14 +70,14 @@ Scanner scan = VendasApp.getScanner();
 
 			case 2:
 				System.out.println("Esses s�o os clientes cadastrados");
-				clisql.bucarUsuarios();
+				clisql.listarClientes();
 
 				break;
 
 			case 3:
 				// ATUALIZAR CLIENTE
 				System.out.println("Atualizar cliente");
-				clisql.bucarUsuarios();
+				clisql.listarClientes();
 				System.out.println("Digite o id do cliente ");
 				int l = Integer.parseInt(scan.nextLine());
 				Cliente cliente = clisql.getCliente(l);
@@ -88,7 +88,7 @@ Scanner scan = VendasApp.getScanner();
 				String b = scan.nextLine();
 				cliente.setNome(b);
 				clisql.atualizarCliente(cliente);
-				clisql.bucarUsuarios();
+				clisql.listarClientes();
 
 				break;
 			case 4:
@@ -97,7 +97,7 @@ Scanner scan = VendasApp.getScanner();
 				int cli = Integer.parseInt(scan.nextLine());
 				clisql.buscarCliente(clisql.getCliente(cli));
 				clisql.excluirCliente(clisql.getCliente(cli));
-				clisql.bucarUsuarios();
+				clisql.listarClientes();
 
 				break;
 
@@ -148,7 +148,7 @@ Scanner scan = VendasApp.getScanner();
 				System.out.println("");
 				System.out.println("Esses s�o os clientes cadastrados");
 				System.out.println("");
-				clisql.bucarUsuarios();
+				clisql.listarClientes();
 				System.out.println("Informe o id do cliente");
 				System.out.println("");
 				int idCliente = Integer.parseInt(scan.nextLine());

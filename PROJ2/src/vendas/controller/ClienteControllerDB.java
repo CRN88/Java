@@ -60,9 +60,10 @@ public class ClienteControllerDB {
 	}
 
 	// EXIBIR LISTA TODA DE CLIENTES
-	public void bucarUsuarios() throws Exception {
+	public List<Cliente> listarClientes() throws Exception {
 		Connection con = getConnection();
 		try {
+			List<Cliente> Lista = new ArrayList<>();
 			String sql = "SELECT id,nome,cpf FROM cliente";
 			PreparedStatement ps = con.prepareStatement(sql);
 			ResultSet rs = ps.executeQuery();
@@ -71,12 +72,19 @@ public class ClienteControllerDB {
 				int id = rs.getInt("id");
 				String nome = rs.getString("nome");
 				String cpf = rs.getString("cpf");
-				System.out.println("Id:" + id + "Nome:" + nome + " Cpf:" + cpf);
+				Cliente cliente = new Cliente();
+				cliente.setId(id);
+				cliente.setNome(nome);
+				cliente.setCpf(cpf);
+				Lista.add(cliente);
+				
+				
+				//System.out.println("Id:" + id + "Nome:" + nome + " Cpf:" + cpf);
 			}
 
 			rs.close();
 			ps.close();
-
+			return Lista;
 		} catch (Exception e) {
 			throw e;
 		} finally {
