@@ -77,7 +77,7 @@ public class ClienteControllerDB {
 				cliente.setNome(nome);
 				cliente.setCpf(cpf);
 				Lista.add(cliente);
-				
+				//testee git
 				
 				//System.out.println("Id:" + id + "Nome:" + nome + " Cpf:" + cpf);
 			}
