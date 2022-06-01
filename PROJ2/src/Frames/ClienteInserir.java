@@ -6,6 +6,7 @@ import java.awt.Font;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
@@ -36,117 +37,65 @@ public class ClienteInserir extends JFrame {
 		setVisible(false);
 	}
 	
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					ClienteInserir frame = new ClienteInserir();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
 	public ClienteInserir() {
 		setTitle("CADASTAR CLIENTE");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 353, 313);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		setBounds(100, 100, 500, 401);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
-		contentPane.setLayout(new FormLayout(new ColumnSpec[] {
-				FormSpecs.RELATED_GAP_COLSPEC,
-				FormSpecs.DEFAULT_COLSPEC,
-				FormSpecs.RELATED_GAP_COLSPEC,
-				FormSpecs.DEFAULT_COLSPEC,
-				FormSpecs.RELATED_GAP_COLSPEC,
-				ColumnSpec.decode("default:grow"),
-				FormSpecs.RELATED_GAP_COLSPEC,
-				ColumnSpec.decode("default:grow"),
-				FormSpecs.RELATED_GAP_COLSPEC,
-				FormSpecs.DEFAULT_COLSPEC,
-				FormSpecs.RELATED_GAP_COLSPEC,
-				FormSpecs.DEFAULT_COLSPEC,
-				FormSpecs.RELATED_GAP_COLSPEC,
-				FormSpecs.DEFAULT_COLSPEC,
-				FormSpecs.RELATED_GAP_COLSPEC,
-				FormSpecs.DEFAULT_COLSPEC,
-				FormSpecs.RELATED_GAP_COLSPEC,
-				FormSpecs.DEFAULT_COLSPEC,
-				FormSpecs.RELATED_GAP_COLSPEC,
-				FormSpecs.DEFAULT_COLSPEC,
-				FormSpecs.RELATED_GAP_COLSPEC,
-				FormSpecs.DEFAULT_COLSPEC,
-				FormSpecs.RELATED_GAP_COLSPEC,
-				FormSpecs.DEFAULT_COLSPEC,
-				FormSpecs.RELATED_GAP_COLSPEC,
-				FormSpecs.DEFAULT_COLSPEC,
-				FormSpecs.RELATED_GAP_COLSPEC,
-				FormSpecs.DEFAULT_COLSPEC,
-				FormSpecs.RELATED_GAP_COLSPEC,
-				FormSpecs.DEFAULT_COLSPEC,
-				FormSpecs.RELATED_GAP_COLSPEC,
-				FormSpecs.DEFAULT_COLSPEC,},
-			new RowSpec[] {
-				FormSpecs.RELATED_GAP_ROWSPEC,
-				FormSpecs.DEFAULT_ROWSPEC,
-				FormSpecs.RELATED_GAP_ROWSPEC,
-				FormSpecs.DEFAULT_ROWSPEC,
-				FormSpecs.RELATED_GAP_ROWSPEC,
-				FormSpecs.DEFAULT_ROWSPEC,
-				FormSpecs.RELATED_GAP_ROWSPEC,
-				FormSpecs.DEFAULT_ROWSPEC,
-				FormSpecs.RELATED_GAP_ROWSPEC,
-				FormSpecs.DEFAULT_ROWSPEC,
-				FormSpecs.RELATED_GAP_ROWSPEC,
-				FormSpecs.DEFAULT_ROWSPEC,
-				FormSpecs.RELATED_GAP_ROWSPEC,
-				FormSpecs.DEFAULT_ROWSPEC,
-				FormSpecs.RELATED_GAP_ROWSPEC,
-				FormSpecs.DEFAULT_ROWSPEC,
-				FormSpecs.RELATED_GAP_ROWSPEC,
-				RowSpec.decode("default:grow"),
-				FormSpecs.RELATED_GAP_ROWSPEC,
-				FormSpecs.DEFAULT_ROWSPEC,}));
+		contentPane.setLayout(null);
 		
-		JLabel lblNewLabel_3 = new JLabel("  CASTRO DE CLIENTES");
+		JLabel lblNewLabel_3 = new JLabel("  CADASTRO DE CLIENTES");
+		lblNewLabel_3.setBounds(110, 21, 253, 22);
 		lblNewLabel_3.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		contentPane.add(lblNewLabel_3, "6, 8");
-		
-		JLabel lblNewLabel_1 = new JLabel("NOME");
-		contentPane.add(lblNewLabel_1, "4, 10, right, default");
+		contentPane.add(lblNewLabel_3);
 		
 		textnome = new JTextField();
-		contentPane.add(textnome, "6, 10, fill, default");
+		textnome.setBounds(158, 114, 193, 20);
+		contentPane.add(textnome);
 		textnome.setColumns(10);
 		
-		JLabel lblNewLabel_2 = new JLabel("CPF");
-		contentPane.add(lblNewLabel_2, "4, 12, right, default");
-		
 		textcpf = new JTextField();
-		contentPane.add(textcpf, "6, 12, fill, default");
+		textcpf.setBounds(158, 159, 193, 20);
+		contentPane.add(textcpf);
 		textcpf.setColumns(10);
 		
 		JButton btnNewButton = new JButton("CONFIRMAR");
+		btnNewButton.setBounds(84, 256, 125, 23);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					addCliente();
+					JOptionPane.showMessageDialog(null, "Cliente inserido com sucesso!");
 				} catch (Exception e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 			}
 		});
-		contentPane.add(btnNewButton, "6, 16");
+		contentPane.add(btnNewButton);
+		
+		JButton btnCancelar = new JButton("CANCELAR");
+		btnCancelar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					setVisible(false);
+				}catch(Exception e2) {
+					e2.printStackTrace();
+				}
+			}
+		});
+		btnCancelar.setBounds(270, 256, 125, 23);
+		contentPane.add(btnCancelar);
+		
+		JLabel lblNewLabel = new JLabel("NOME");
+		lblNewLabel.setBounds(102, 117, 46, 14);
+		contentPane.add(lblNewLabel);
+		
+		JLabel cpf = new JLabel("CPF");
+		cpf.setBounds(102, 162, 46, 14);
+		contentPane.add(cpf);
 	}
 
 }

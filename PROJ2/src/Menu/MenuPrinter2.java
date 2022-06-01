@@ -19,7 +19,7 @@ import vendasControllerDB.PedidoDB;
 import vendasControllerDB.ProdutocontrollerDB;
 
 public class MenuPrinter2 {
-	// teste
+	
 	public void menuPrinter2(ClienteController clieContro, ProdutoController produContro,
 			PedidoController pedidoController, PedidoController pediContro)
 
@@ -110,14 +110,14 @@ Scanner scan = VendasApp.getScanner();
 			case 6:
 				// LISTAR PRODUTOS
 				System.out.println("Esses sao os produtos");
-				proMenu.buscarProdutos();
+				proMenu.listProdutos();
 				break;
 
 			case 7:
 				// ATUALIZAR PRODUTO
 				System.out.println("Atualizar produto");
 				System.out.println("Digite o id do produto ");
-				proMenu.buscarProdutos();
+				proMenu.listProdutos();
 				int x = Integer.parseInt(scan.nextLine());
 				Produto produto = proMenu.getProduto(x);
 				System.out.println("Digite o preco");
@@ -133,10 +133,10 @@ Scanner scan = VendasApp.getScanner();
 			case 8:
 				// EXCLUIR PRODUTO //OK
 				System.out.println("digite o Id do produto que deseja excluir");
-				proMenu.buscarProdutos();
+				proMenu.listProdutos();
 				int pro = Integer.parseInt(scan.nextLine());
 				proMenu.excluirProduto(proMenu.getProduto(pro));
-				proMenu.buscarProdutos();
+				proMenu.listProdutos();
 				break;
 
 			case 9:
@@ -165,7 +165,7 @@ Scanner scan = VendasApp.getScanner();
 				System.out.println();
 				System.out.println("Quantos produtos deseja");
 				int p = Integer.parseInt(scan.nextLine());
-				proMenu.buscarProdutos();
+				proMenu.listProdutos();
 				System.out.println("Esses s�o os produtos disponiveis");
 				for (int i = 0; i < p; i++) {
 					System.out.println("Informe o id do produto");

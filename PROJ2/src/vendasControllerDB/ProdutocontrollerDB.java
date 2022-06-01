@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.List;
 
 import vendas.controller.ClienteController;
@@ -98,9 +99,10 @@ public class ProdutocontrollerDB {
 	}
 
 	// BUSCAR PRODUTOS CADASTRAD0S OK
-	public void buscarProdutos() throws Exception {
+	public List<Produto> listProdutos() throws Exception {
 		Connection con = getConnection();
 		try {
+			List<Produto> Lista = new ArrayList<>();
 			String sql = "SELECT id,nome,preco FROM produtos";
 			PreparedStatement ps = con.prepareStatement(sql);
 			ResultSet rs = ps.executeQuery();
@@ -108,13 +110,17 @@ public class ProdutocontrollerDB {
 			while (rs.next()) {
 				int id = rs.getInt("id");
 				String nome = rs.getString("nome");
-				String preco = rs.getString("preco");
-				System.out.println("Id: " + id + " Nome:" + nome + " preco:" + preco);
+				Double preco = rs.getDouble("preco");
+				Produto produto = new Produto();
+				produto.setId(id);
+				produto.setPreco(preco);
+				produto.setNome(nome);
+				Lista.add(produto);
 			}
 
 			rs.close();
 			ps.close();
-
+			return Lista;
 		} catch (Exception e) {
 			throw e;
 		} finally {
@@ -153,13 +159,7 @@ public class ProdutocontrollerDB {
 			PreparedStatement ps = con.prepareStatement(sql);
 			ps.setInt(1, produto.getId());
 			ps.executeUpdate();
-			int rowsAffected = ps.executeUpdate();
 
-			if (rowsAffected > 0) {
-				System.out.println("Erro ao deletar produto");
-			} else {
-				System.out.println("Produto deletado com sucesso");
-			}
 		} catch (Exception e) {
 			throw e;
 		} finally {

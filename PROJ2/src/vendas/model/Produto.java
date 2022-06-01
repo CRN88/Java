@@ -1,5 +1,7 @@
 package vendas.model;
 
+import java.awt.Component;
+
 public class Produto {
 	private int id;
 

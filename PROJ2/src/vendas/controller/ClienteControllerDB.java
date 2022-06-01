@@ -77,9 +77,6 @@ public class ClienteControllerDB {
 				cliente.setNome(nome);
 				cliente.setCpf(cpf);
 				Lista.add(cliente);
-				//testee git
-				
-				//System.out.println("Id:" + id + "Nome:" + nome + " Cpf:" + cpf);
 			}
 
 			rs.close();
@@ -193,23 +190,4 @@ public class ClienteControllerDB {
 		return cliente;
 
 	}
-
-//	public void excluirCliente() {
-//
-//	}
-//
-//	public void listCliente(Object buscarCliente) {
-//	}
-//
-//	public void buscarCliente(int cli) {
-//	}
-//
-//	public void exibirLista(List<Cliente> listCliente) {
-//
-//	}
-//
-//	public void inserirProduto(Object capturarProduto) {
-//
-//	}
-
 }

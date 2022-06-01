@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
@@ -19,6 +20,10 @@ import com.jgoodies.forms.layout.RowSpec;
 
 import vendas.controller.ClienteControllerDB;
 import vendas.model.Cliente;
+import java.awt.Font;
+import javax.swing.ImageIcon;
+import java.awt.Panel;
+import java.awt.Label;
 
 public class ClienteExcluir extends JFrame {
 
@@ -29,31 +34,9 @@ public class ClienteExcluir extends JFrame {
 	private List list;
 	private JButton btnNewButton;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					ClienteExcluir frame = new ClienteExcluir();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
-	
-	
-	
-	
-
 	ClienteControllerDB clienteC = new ClienteControllerDB();
+	private JLabel lblNewLabel_1;
+	private JButton btnDelete;
 	public void exCliente() throws Exception {
 		Cliente cliente = new Cliente();
 		int x = Integer.parseInt(textid.getText());
@@ -71,55 +54,15 @@ public class ClienteExcluir extends JFrame {
 	}
 	
 	public ClienteExcluir() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 506, 416);
+		setTitle("CLIENTE");
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		setBounds(100, 100, 473, 499);
 		contentPaneID = new JPanel();
 		contentPaneID.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPaneID);
-		contentPaneID.setLayout(new FormLayout(new ColumnSpec[] {
-				FormSpecs.RELATED_GAP_COLSPEC,
-				FormSpecs.DEFAULT_COLSPEC,
-				FormSpecs.RELATED_GAP_COLSPEC,
-				FormSpecs.DEFAULT_COLSPEC,
-				FormSpecs.RELATED_GAP_COLSPEC,
-				FormSpecs.DEFAULT_COLSPEC,
-				FormSpecs.RELATED_GAP_COLSPEC,
-				ColumnSpec.decode("default:grow"),
-				FormSpecs.RELATED_GAP_COLSPEC,
-				FormSpecs.DEFAULT_COLSPEC,
-				FormSpecs.RELATED_GAP_COLSPEC,
-				ColumnSpec.decode("default:grow"),
-				FormSpecs.RELATED_GAP_COLSPEC,
-				FormSpecs.DEFAULT_COLSPEC,
-				FormSpecs.RELATED_GAP_COLSPEC,
-				FormSpecs.DEFAULT_COLSPEC,
-				FormSpecs.RELATED_GAP_COLSPEC,
-				FormSpecs.DEFAULT_COLSPEC,
-				FormSpecs.RELATED_GAP_COLSPEC,
-				FormSpecs.DEFAULT_COLSPEC,
-				FormSpecs.RELATED_GAP_COLSPEC,
-				FormSpecs.DEFAULT_COLSPEC,
-				FormSpecs.RELATED_GAP_COLSPEC,
-				FormSpecs.DEFAULT_COLSPEC,
-				FormSpecs.RELATED_GAP_COLSPEC,
-				FormSpecs.DEFAULT_COLSPEC,},
-			new RowSpec[] {
-				FormSpecs.RELATED_GAP_ROWSPEC,
-				FormSpecs.DEFAULT_ROWSPEC,
-				FormSpecs.RELATED_GAP_ROWSPEC,
-				FormSpecs.DEFAULT_ROWSPEC,
-				FormSpecs.RELATED_GAP_ROWSPEC,
-				FormSpecs.DEFAULT_ROWSPEC,
-				FormSpecs.RELATED_GAP_ROWSPEC,
-				FormSpecs.DEFAULT_ROWSPEC,
-				FormSpecs.RELATED_GAP_ROWSPEC,
-				FormSpecs.DEFAULT_ROWSPEC,
-				FormSpecs.RELATED_GAP_ROWSPEC,
-				FormSpecs.DEFAULT_ROWSPEC,
-				FormSpecs.RELATED_GAP_ROWSPEC,
-				RowSpec.decode("max(137dlu;default)"),}));
 		
-		btnNewButton = new JButton("LISTAR CLIENTES");
+		btnNewButton = new JButton("LISTAR");
+		btnNewButton.setBounds(342, 51, 78, 23);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ClienteExcluir list = new ClienteExcluir();
@@ -127,31 +70,34 @@ public class ClienteExcluir extends JFrame {
 					list.listCliente();
 				}catch (Exception e1) {
 					e1.printStackTrace();
-				}
+				}					
 				list.setVisible(true);
 			}
 		});
-		contentPaneID.add(btnNewButton, "7, 2, 16, 1");
+		contentPaneID.setLayout(null);
+		contentPaneID.add(btnNewButton);
 		
 		lblNewLabel_2 = new JLabel("DIGITE O ID");
-		contentPaneID.add(lblNewLabel_2, "4, 4");
-		
-		JLabel lblNewLabel = new JLabel("ID");
-		contentPaneID.add(lblNewLabel, "2, 6, right, default");
+		lblNewLabel_2.setBounds(27, 55, 93, 14);
+		contentPaneID.add(lblNewLabel_2);
 		
 		textid = new JTextField();
-		contentPaneID.add(textid, "4, 6, fill, default");
+		textid.setBounds(90, 52, 78, 20);
+		contentPaneID.add(textid);
 		textid.setColumns(10);
 		
 		list = new List();
-		contentPaneID.add(list, "6, 4, 17, 11");
+		list.setBounds(27, 90, 401, 360);
+		contentPaneID.add(list);
 		
-		btnConfirmar = new JButton("CONFIRMAR");
+		btnConfirmar = new JButton("CONFIR");
+		btnConfirmar.setBounds(178, 51, 72, 23);
 		btnConfirmar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
 				try {
 					exCliente();
+					JOptionPane.showMessageDialog(null, "Cliente excluido com sucesso!");
+
 				} catch (Exception e1) {
 					
 					e1.printStackTrace();
@@ -159,7 +105,20 @@ public class ClienteExcluir extends JFrame {
 				
 			}
 		});
-		contentPaneID.add(btnConfirmar, "4, 8");
+		contentPaneID.add(btnConfirmar);
+		
+		lblNewLabel_1 = new JLabel("EXCLUIR CLIENTE");
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblNewLabel_1.setBounds(153, 11, 209, 14);
+		contentPaneID.add(lblNewLabel_1);
+		
+		btnDelete = new JButton("CANCELA");
+		btnDelete.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+			}
+		});
+		btnDelete.setBounds(260, 51, 72, 23);
+		contentPaneID.add(btnDelete);
 	}
-
 }
